@@ -1,0 +1,68 @@
+% ==========================================
+% PLANTILLA LATEX — DOCUMENTOS ACADÉMICOS
+% ==========================================
+%
+% CÓMO USAR ESTA PLANTILLA:
+%   1. Edita  config/proyecto.tex   con los datos de tu proyecto
+%   2. Crea tus capítulos en  capitulos/
+%   3. Descomenta los \input que necesites abajo
+%   4. Compila:  latexmk -pdf -outdir=build main.tex
+%
+% ESTRUCTURA DE CARPETAS:
+%   config/       → Configuración (editar sólo proyecto.tex)
+%   common/       → Archivos estáticos de la plantilla (no tocar a menos que sepas lo que haces)
+%   capitulos/    → Tus capítulos (tu contenido va aquí)
+%   imagenes/     → Imágenes (logos en imagenes/logos/)
+%   build/        → Salida de compilación (se genera solo)
+%
+% TIP: Si algo no compila, limpia build/ y reintenta:
+%      latexmk -C -outdir=build ; latexmk -pdf -outdir=build main.tex
+%
+% ==========================================
+
+\documentclass[11pt, letterpaper]{report}
+
+% --- Paquetes y estilos (no tocar a menos que sepas lo que haces) ---
+\input{config/configuracion}
+
+% --- Datos del proyecto (EDITAR ESTE ARCHIVO) ---
+\input{config/proyecto}
+
+% ==========================================
+\begin{document}
+% ==========================================
+
+% --- Portada ---
+\pagenumbering{gobble}
+\input{common/portada}
+
+% --- Índices ---
+\input{common/indices}
+
+% --- Contenido principal ---
+\pagenumbering{arabic}
+
+% ==========================================
+% CAPÍTULOS DE LA PRÁCTICA 1
+% ==========================================
+% Cada capítulo contiene comentarios TODO indicando
+% qué debe escribir cada integrante del equipo
+
+\input{capitulos/objetivo}
+\input{capitulos/marco_teorico}
+\input{capitulos/instalacion}
+\input{capitulos/comandos}
+\input{capitulos/ejercicios}
+\input{capitulos/conclusiones}
+
+% --- Bibliografía ---
+% TIP: Descomenta cuando tengas referencias en referencias.bib
+% \input{common/bibliografia}
+
+% --- Anexos ---
+% TIP: Descomenta si necesitas apéndices al final
+% \input{common/anexos}
+
+% ==========================================
+\end{document}
+% ==========================================
