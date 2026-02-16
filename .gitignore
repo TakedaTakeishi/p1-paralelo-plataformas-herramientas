@@ -1,0 +1,20 @@
+# Archivos de compilación LaTeX
+/build/
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+*.lof
+*.lot
+
+# Archivos temporales del sistema
+.DS_Store
+Thumbs.db
+*.tmp
