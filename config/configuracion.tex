@@ -16,7 +16,29 @@
 % --- Codificación y tipografía ---
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage{lmodern}
+
+% Aplicar configuración de fuente desde proyecto.tex
+% Usa etoolbox para comparar strings
+\makeatletter
+\newcommand{\@checkusartimes}{}
+\let\@checkusartimes\usarTimesNewRoman
+\newif\ifusartimes
+\def\@truestring{true}
+\ifx\@checkusartimes\@truestring
+  \usartimestrue
+\else
+  \usartimesfalse
+\fi
+\makeatother
+
+\ifusartimes
+  % Usar Times New Roman
+  \usepackage{newtxtext}       % Times New Roman para texto
+  \usepackage{newtxmath}       % Times New Roman para matemáticas
+\else
+  % Usar fuente por defecto (Latin Modern)
+  \usepackage{lmodern}
+\fi
 
 % --- Idioma ---
 % TIP: Si escribes en otro idioma, cambia 'spanish' aquí.
@@ -70,13 +92,30 @@
 % --- Encabezados y pies de página ---
 \usepackage{fancyhdr}
 
+% --- Formato de títulos (para aplicar tamaños personalizados) ---
+\usepackage{titlesec}
+
+% Aplicar tamaños de títulos desde proyecto.tex
+\titleformat{\chapter}[display]
+  {\normalfont\bfseries}{\chaptertitlename\ \thechapter}{20pt}{\fontsize{\tamanoTituloUno}{\dimexpr\tamanoTituloUno*12/10\relax}\selectfont}
+\titleformat{\section}
+  {\normalfont\bfseries}{\thesection}{1em}{\fontsize{\tamanoTituloDos}{\dimexpr\tamanoTituloDos*12/10\relax}\selectfont}
+\titleformat{\subsection}
+  {\normalfont\bfseries}{\thesubsection}{1em}{\fontsize{\tamanoTituloTres}{\dimexpr\tamanoTituloTres*12/10\relax}\selectfont}
+
 % --- Listas mejoradas ---
 \usepackage{enumitem}
 
 % --- Matemáticas ---
-\usepackage{amsmath}
-\usepackage{amsfonts}
-\usepackage{amssymb}
+\ifusartimes
+  % newtxmath ya carga amsmath e incluye los símbolos de AMS
+  % No cargar amsfonts/amssymb para evitar conflictos
+\else
+  % Cargar paquetes matemáticos para Latin Modern
+  \usepackage{amsmath}
+  \usepackage{amsfonts}
+  \usepackage{amssymb}
+\fi
 
 % --- Apéndices ---
 \usepackage[titletoc]{appendix}

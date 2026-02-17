@@ -44,7 +44,16 @@
 \newcommand{\logoIzquierdo}{imagenes/logos/ipn_logo.png}
 \newcommand{\logoDerecho}{imagenes/logos/escom_logo.png}
 
-% --- Ruta base de imágenes ---
-% TIP: Todas las imágenes se buscarán desde esta carpeta.
-%      Puedes usar subcarpetas: \includegraphics{subcarpeta/imagen.png}
-\graphicspath{{imagenes/}}
+% --- Configuración de fuentes (opcional) ---
+% TIP: Configura la fuente y tamaños de texto para el documento
+%      Por defecto usa Times New Roman
+%      Puedes cambiar los tamaños según tus necesidades
+
+% Usar Times New Roman (true) o fuente por defecto (false)
+\newcommand{\usarTimesNewRoman}{true}      % true o false
+
+% Tamaños de fuente
+\newcommand{\tamanoTextoBase}{11pt}        % Tamaño del texto normal
+\newcommand{\tamanoTituloUno}{16pt}        % Tamaño para \chapter o nivel 1
+\newcommand{\tamanoTituloDos}{14pt}        % Tamaño para \section o nivel 2
+\newcommand{\tamanoTituloTres}{12pt}       % Tamaño para \subsection o nivel 3
