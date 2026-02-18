@@ -122,17 +122,218 @@
 
 % TODO (José Angel): Investiga y escribe sobre variables de entorno
 % Incluye: qué son, principales variables (PATH, HOME, etc.), cómo configurarlas
+\textbf{1. ¿Qué son las variables de entorno?}.
 
+Las variables de entorno son valores dinámicos que afectan los programas o procesos que se ejecutan en un servidor. Existen en todos los sistemas operativos y su tipo puede variar. Las variables de entorno se pueden crear, editar, guardar y eliminar.
+
+En Linux, las variables de entorno son marcadores de posición para la información almacenada dentro del sistema que pasa datos a los programas iniciados en shells (intérpretes de comando) o sub-shells. \cite{variables_entorno}
+\newline
+\textbf{2. ¿Cómo ver en Linux las variables de entorno?}.
+
+Puedes ver la lista completa de variables de entorno de tu versión de Linux utilizando el comando printenv. El uso simple de este en Ubuntu proporcionará un gran resultado que muestra todas las variables.
+
+Puedes obtener una salida más manejable agregando detalles en la línea de comando, como por ejemplo:
+
+\begin{center}
+    \textbf{printenv | less}
+\end{center}
+
+Cada línea contiene el nombre de la variable de entorno Linux seguido de = y el valor. Por ejemplo:
+
+\begin{center}
+    \textbf{HOME=/home/edward}
+\end{center}
+
+Esto quiere decir que HOME es una variable de entorno de Linux que tiene el valor establecido como el directorio /home/edward.
+
+Las variables de entorno suelen estar en mayúsculas, aunque también puedes crear variables de entorno en minúsculas. La salida de printenv muestra todas las variables de entorno en mayúsculas.
+
+Una cosa importante a tener en cuenta es que las variables de entorno de Linux distinguen entre mayúsculas y minúsculas. Si deseas ver el valor de una variable de entorno específica, puedes hacerlo pasando el nombre de esa variable como argumento al comando printenv. La cadena de caracteres completa se vería así en la línea de comando:
+
+\begin{center}
+    \textbf{printenv HOME}
+\end{center}
+
+Salida:
+
+\begin{center}
+    \textbf{/home/edward}
+\end{center}
+
+Otra forma de mostrar el valor de una variable de entorno es usar el comando echo de esta manera:
+
+\begin{center}
+\texttt{echo \$USER}
+\end{center}
+
+Salida:
+
+\begin{center}
+    \textbf{Edward}
+\end{center}
+
+\cite{variables_entorno}
+\newline
+\textbf{3. ¿Cómo crear una nueva variable de entorno en Linux?}
+
+La sintaxis básica de este comando se vería así:
+\begin{center}
+    \textbf{export VAR="value"}
+\end{center}
+
+Donde:
+\begin{itemize}
+  \item export: el comando utilizado para crear la variable.
+  \item VAR: el nombre de la variable.
+  \item = indica que la siguiente sección es el valor.
+  \item “value”: el valor real.
+\end{itemize}
+
+Por ejemplo:
+\begin{center}
+    \textbf{export edward = "hostinger"}
+\end{center}
+
+\cite{variables_entorno}
+
+\newline
+\textbf{4. Revertir el valor de una variable de entorno Linux.}
+
+Para esto se puede usar el comando unset. La sintaxis del comando se ve de la siguiente manera:
+\begin{center}
+    \textbf{unset VAR}
+\end{center}
+
+Las partes del comando son:
+\begin{itemize}
+  \item unset: el comando en sí.
+  \item VAR: la variable cuyo valor queremos revertir.
+\end{itemize}
+
+\cite{variables_entorno}
 
 % ==========================================
 % SECCIÓN 13: Comandos de GNU-Linux (Tabla 1)
 % RESPONSABLE: Frem Cortés José Angel
 % ==========================================
 \section{Comandos de GNU-Linux mostrados en la tabla 1}
-
 % TODO (José Angel): Investiga y escribe sobre los comandos de la Tabla 1
 % Describe brevemente qué hace cada comando y para qué sirve
 % Los comandos son: cal, clear, apt, rm, date, ifconfig, exit, mv, echo, df,
 % ps, more, time, du, ps -fea, less, uname, pstree, man, mkdir, w, kill,
 % cat, pico, who, trap, fg, nano, bash, pwd, cd, vi, wc, su, ls, apt-get, sudo
+De acuerdo con el sitio web \cite{linux_comandos}, se tienen las siguientes descripciones de los comandos más utilizados al momento de trabajar en Linux.
 
+\textbf{cal:}
+Muestra un calendario en la terminal.
+
+\textbf{clear:}
+Limpia el contenido visible de la terminal.
+
+\textbf{apt:}
+Gestor de paquetes en distribuciones basadas en Debian para instalar, actualizar y eliminar software.
+
+\textbf{rm:}
+Elimina archivos o directorios.
+
+\textbf{date:}
+Muestra o configura la fecha y hora del sistema.
+
+\textbf{ifconfig:}
+Configura y muestra información de interfaces de red (actualmente reemplazado por ip en sistemas modernos).
+
+\textbf{exit:}
+Cierra la sesión actual del intérprete de comandos.
+
+\textbf{mv:}
+Mueve o renombra archivos y directorios.
+
+\textbf{echo:}
+Imprime texto o variables en la salida estándar.
+
+\textbf{df:}
+Muestra el espacio disponible en sistemas de archivos.
+
+\textbf{ps:}
+Muestra procesos activos.
+
+\textbf{more:}
+Permite visualizar el contenido de archivos página por página.
+
+\textbf{time:}
+Mide el tiempo que tarda en ejecutarse un comando.
+
+\textbf{du:}
+Muestra el uso de espacio en disco de archivos y directorios.
+
+\textbf{ps-fea:}
+Muestra todos los procesos en formato extendido.
+
+\textbf{less:}
+Visualizador avanzado de archivos que permite desplazamiento hacia adelante y atrás.
+
+\textbf{uname:}
+Muestra información del sistema (kernel, arquitectura, etc.).
+
+\textbf{pstree:}
+Muestra los procesos en forma de árbol jerárquico.
+
+\textbf{man:}
+Muestra el manual de un comando.
+
+\textbf{mkdir:}
+Crea directorios.).
+
+\textbf{w:}
+Muestra los usuarios conectados y lo que están ejecutando.
+
+\textbf{kill -9:}
+Envía señal SIGKILL para terminar forzosamente un proceso.
+
+\textbf{cat:}
+Muestra el contenido de archivos y permite concatenarlos.
+
+\textbf{pico:}
+Editor de texto en terminal (predecesor de nano).
+
+\textbf{who:}
+Muestra los usuarios actualmente conectados.
+
+\textbf{trap -l:}
+Lista las señales que pueden ser capturadas por el shell.
+
+\textbf{fg:}
+Reanuda un proceso detenido en segundo plano y lo pasa al primer plano.
+
+\textbf{nano:}
+Editor de texto en terminal sencillo y fácil de usar.
+
+\textbf{bash:}
+Intérprete de comandos GNU Bourne Again Shell.
+
+\textbf{pwd:}
+Muestra el directorio de trabajo actual.
+
+\textbf{cd:}
+Permite navegar entre carpetas dentro del sistema Linux.
+
+\textbf{vi:}
+Editor de texto tradicional en sistemas Unix.
+
+\textbf{wd:}
+Cuenta líneas, palabras y caracteres de un archivo.
+
+\textbf{su:}
+Permite cambiar de usuario.
+
+\textbf{ls:}
+Lista archivos y directorios.
+
+\textbf{apt-get:}
+Herramienta de línea de comandos para gestionar paquetes en Debian/Ubuntu.
+
+\textbf{sudo:}
+Permite ejecutar comandos con privilegios de superusuario.
+
+\textbf{ls - la:}
+Lista archivos mostrando detalles y archivos ocultos.

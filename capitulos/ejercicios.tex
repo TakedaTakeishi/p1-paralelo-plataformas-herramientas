@@ -14,7 +14,26 @@
 % - Al menos 3 ejemplos de rutas absolutas
 % - Al menos 3 ejemplos de rutas relativas
 % Incluye capturas de pantalla mostrando el uso de estas rutas
+% El PDF no pide capturas de pantalla, solamente escribir y explicar cada ejemplo.
+1.- Rutas Absolutas: Definen la ubicación exacta desde la raíz del sistema (/). No importa dónde se está trabajando, siempre te llevará al mismo lugar.
 
+Algunos ejemplos son:
+
+1) /home/usuario/documentos/tarea.txt: Ruta completa desde la raíz hasta el archivo.
+
+2) /etc/network/interfaces: Acceso directo a una configuración del sistema.
+
+3) /var/log/syslog: Ubicación fija de un archivo de registro del sistema.
+
+2.- Rutas Relativas: Se basan en la ubicación actual (directorio de trabajo). Si se cambia de carpeta, la ruta relativa también debe cambiar para ser válida.
+
+Algunos ejemplos son:
+
+1) documentos/fotos: Busca la carpeta "fotos" dentro de "documentos", asumiendo que ya se está en la carpeta superior.
+
+2) ./script.sh: El . indica el directorio actual; sirve para ejecutar algo donde se está parado.
+
+3) ../imagenes/logo.png: El .. significa "subir un nivel" en las carpetas y luego buscar en "imagenes". 
 
 % ==========================================
 % EJERCICIO 16: Borrado con comodines
@@ -25,7 +44,22 @@
 % TODO (José Angel): Escribe y explica 3 ejemplos de borrado de archivos
 % utilizando el comando rm y los comodines "*" y "?"
 % Incluye capturas de pantalla de cada ejemplo
+% El PDF no pide capturas de pantalla, solamente escribir y explicar cada ejemplo.
+El comando rm (remove) elimina archivos. Los comodines permiten seleccionar varios archivos a la vez según un patrón.
 
+1.- Comodín *: Representa cualquier número de caracteres (incluyendo cero).
+
+Algunos ejemplos son:
+
+1) rm *.jpg: Borra todos los archivos que terminen en ".jpg" en la carpeta actual.
+
+2) rm notas*: Borra cualquier archivo que empiece con "notas", como "notas1.txt", "notas_viejas.doc", etc.
+    
+2.- Comodín ?: Representa exactamente un solo carácter cualquiera.
+
+Un ejemplo es:
+
+3) rm tarea?.pdf: Borra archivos como "tarea1.pdf" o "tareaA.pdf", pero no "tarea10.pdf" (porque tiene dos caracteres después de "tarea"). 
 
 % ==========================================
 % EJERCICIO 17: Redireccionamiento
@@ -36,7 +70,18 @@
 % TODO (José Angel): Escribe y explica 2 ejemplos de redireccionamiento
 % utilizando los comandos > y >>
 % Muestra la diferencia entre ambos con capturas de pantalla
+% El PDF no pide capturas de pantalla, solamente escribir y explicar cada ejemplo.
+1.- Operador > (Sobrescribir): Envía la salida a un archivo. Si el archivo ya existe, borra su contenido anterior y escribe lo nuevo.
 
+Ejemplo: ls > lista_archivos.txt
+
+Explicación: Crea un archivo llamado "lista_archivos.txt" con el contenido de la carpeta. Si el archivo ya existía, se pierde lo que tenía antes.
+
+2.- Operador >> (Añadir): Envía la salida al final del archivo sin borrar lo que ya tiene (modo "append").
+
+Ejemplo: date >> registro.log
+
+Explicación: Agrega la fecha y hora actual al final del archivo "registro.log" cada vez que se ejecuta, conservando el historial previo.
 
 % ==========================================
 % EJERCICIO 18: Instalación por línea de comandos
