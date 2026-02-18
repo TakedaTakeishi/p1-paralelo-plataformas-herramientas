@@ -74,32 +74,153 @@
 \subsection{Comando cal}
 % TODO (Cristian): Completa esta sección
 
+El comando \texttt{cal} (calendar) muestra un calendario en formato textual. Por defecto, presenta el mes actual, aunque puede configurarse para mostrar un mes o año específico.
+
+\textbf{Tipo:} Comando externo.
+
+\textbf{Sintaxis general:}
+\begin{verbatim}
+cal [opciones] [mes] [año]
+\end{verbatim}
+
+\textbf{Ejemplo:}
+\begin{lstlisting}[language=bash]
+cal 2 2026
+\end{lstlisting}
+
+Muestra el calendario correspondiente a febrero de 2026.
+
+
 \subsection{Comando clear}
 % TODO (Cristian): Completa esta sección
 
+El comando \texttt{clear} limpia la pantalla de la terminal, desplazando el contenido previo fuera de la vista.
+
+\textbf{Tipo:} Comando externo.
+
+\textbf{Sintaxis:}
+\begin{lstlisting}[language=bash]
+clear
+\end{lstlisting}
+
+Se utiliza principalmente para mantener organizada la visualización en sesiones prolongadas.
+
 \subsection{Comando apt}
 % TODO (Cristian): Completa esta sección
+El comando \texttt{apt} es una herramienta de gestión de paquetes utilizada en distribuciones basadas en Debian. Permite instalar, actualizar y eliminar software desde repositorios oficiales.
+
+\textbf{Tipo:} Comando externo.
+
+\textbf{Ejemplo:}
+\begin{lstlisting}[language=bash]
+sudo apt update
+sudo apt install gimp
+\end{lstlisting}
+
+El primer comando actualiza la lista de paquetes disponibles; el segundo instala el paquete indicado.
 
 \subsection{Comando rm}
 % TODO (Cristian): Completa esta sección
 
+El comando \texttt{rm} (remove) elimina archivos o directorios.
+
+\textbf{Tipo:} Comando externo.
+
+\textbf{Sintaxis general:}
+\begin{lstlisting}[language=bash]
+rm [opciones] archivo
+\end{lstlisting}
+
+\textbf{Ejemplo:}
+\begin{lstlisting}[language=bash]
+rm archivo.txt
+rm -r carpeta/
+\end{lstlisting}
+
+La opción \texttt{-r} permite eliminar directorios de manera recursiva.
+
 \subsection{Comando date}
 % TODO (Cristian): Completa esta sección
+
+El comando \texttt{date} muestra o configura la fecha y hora del sistema.
+
+\textbf{Tipo:} Comando externo.
+
+\textbf{Ejemplo:}
+\begin{lstlisting}[language=bash]
+date
+\end{lstlisting}
+
+Muestra la fecha y hora actuales según la configuración del sistema.
 
 \subsection{Comando ifconfig}
 % TODO (Cristian): Completa esta sección
 
+El comando \texttt{ifconfig} (interface configuration) permite visualizar o configurar interfaces de red.
+
+\textbf{Tipo:} Comando externo.
+
+\textbf{Ejemplo:}
+\begin{lstlisting}[language=bash]
+ifconfig
+\end{lstlisting}
+
+Muestra información como dirección IP, máscara de red y estado de las interfaces. En sistemas modernos puede ser reemplazado por el comando \texttt{ip}.
+
 \subsection{Comando exit}
 % TODO (Cristian): Completa esta sección
+
+El comando \texttt{exit} finaliza la sesión actual del shell o cierra la terminal.
+
+\textbf{Tipo:} Comando interno del shell.
+
+\textbf{Ejemplo:}
+\begin{lstlisting}[language=bash]
+exit
+\end{lstlisting}
 
 \subsection{Comando mv}
 % TODO (Cristian): Completa esta sección
 
+El comando \texttt{mv} (move) permite mover o renombrar archivos y directorios.
+
+\textbf{Tipo:} Comando externo.
+
+\textbf{Ejemplo:}
+\begin{lstlisting}[language=bash]
+mv archivo.txt carpeta/
+mv archivo.txt nuevo_nombre.txt
+\end{lstlisting}
+
+El primer ejemplo mueve el archivo a un directorio; el segundo lo renombra.
+
+
 \subsection{Comando echo}
 % TODO (Cristian): Completa esta sección
 
+El comando \texttt{echo} imprime texto en la salida estándar.
+
+\textbf{Tipo:} Comando interno del shell (aunque también puede existir versión externa).
+
+\textbf{Ejemplo:}
+\begin{lstlisting}[language=bash]
+echo "Hola Mundo"
+\end{lstlisting}
+
+Se utiliza frecuentemente para mostrar mensajes o generar contenido mediante redireccionamiento.
+
 \subsection{Comando df}
 % TODO (Cristian): Completa esta sección
+El comando \texttt{df} (disk free) muestra el espacio disponible y utilizado en los sistemas de archivos montados.
+
+\textbf{Tipo:} Comando externo.
+
+\textbf{Ejemplo:}
+\begin{lstlisting}[language=bash]
+df -h
+\end{lstlisting}
+
+La opción \texttt{-h} presenta los valores en formato legible (MB, GB).
 
 
 % ==========================================

@@ -63,6 +63,25 @@
 % TODO (Cristian): Investiga y escribe sobre CLI y GUI
 % Incluye: definiciones, diferencias, ventajas y desventajas
 
+Un sistema operativo proporciona mecanismos de interacción entre el usuario y el sistema mediante interfaces. Las dos principales son la \textbf{Command Line Interface (CLI)} y la \textbf{Graphical User Interface (GUI)}.
+
+La \textbf{Command Line Interface} es una interfaz textual en la que el usuario introduce comandos que son interpretados por un programa denominado \textit{shell}. En sistemas GNU-Linux, el shell más común es \texttt{bash}. Según la documentación del proyecto GNU, el shell es un intérprete de comandos que ejecuta programas y permite la automatización mediante scripts.
+
+Entre las ventajas de la CLI se encuentran:
+\begin{itemize}
+    \item Bajo consumo de recursos.
+    \item Mayor precisión en la ejecución de tareas.
+    \item Automatización mediante scripts.
+    \item Acceso completo a funcionalidades del sistema.
+\end{itemize}
+
+Como desventaja principal, requiere conocimiento previo de comandos y sintaxis.
+
+La \textbf{Graphical User Interface}, por otro lado, permite la interacción mediante elementos visuales como ventanas, iconos y menús. En GNU-Linux, entornos de escritorio como GNOME o KDE implementan esta interfaz. Su principal ventaja es la facilidad de uso y accesibilidad para usuarios no técnicos, aunque puede consumir más recursos del sistema.
+
+Ambos entornos coexisten en GNU-Linux, permitiendo al usuario elegir la modalidad más adecuada según la tarea.
+
+
 
 % ==========================================
 % SECCIÓN 7: Terminal de GNU-Linux
@@ -73,6 +92,18 @@
 % TODO (Cristian): Investiga y escribe sobre la terminal
 % Incluye: qué es, para qué sirve, emuladores de terminal
 
+La terminal es un programa que actúa como emulador de terminal y permite al usuario interactuar con el shell del sistema operativo. En GNU-Linux, la terminal no es el sistema en sí, sino una aplicación que proporciona acceso a la interfaz de línea de comandos.
+
+El shell, como \texttt{bash}, interpreta los comandos introducidos por el usuario y los ejecuta mediante llamadas al sistema gestionadas por el kernel. De acuerdo con la documentación oficial de GNU Bash, el shell también permite:
+
+\begin{itemize}
+    \item Ejecución de programas.
+    \item Redireccionamiento de entrada y salida.
+    \item Uso de tuberías.
+    \item Programación mediante scripts.
+\end{itemize}
+
+Existen diversos emuladores de terminal en GNU-Linux, tales como GNOME Terminal, Konsole o xterm. Todos permiten ejecutar comandos del sistema y gestionar procesos.
 
 % ==========================================
 % SECCIÓN 8: Tipos de usuario en GNU-Linux
@@ -83,6 +114,17 @@
 % TODO (Cristian): Investiga y escribe sobre tipos de usuario
 % Incluye: root, usuarios normales, permisos, grupos
 
+GNU-Linux es un sistema multiusuario basado en un modelo de permisos y propiedad de archivos. Cada archivo y proceso pertenece a un usuario y a un grupo.
+
+Existen tres categorías principales:
+
+\begin{itemize}
+    \item \textbf{Usuario root}: Es el superusuario del sistema. Posee privilegios administrativos completos y puede modificar cualquier archivo o configuración.
+    \item \textbf{Usuarios normales}: Son cuentas creadas para el uso cotidiano. Tienen permisos limitados para proteger la integridad del sistema.
+    \item \textbf{Usuarios del sistema}: Cuentas utilizadas por servicios y procesos internos.
+\end{itemize}
+
+El control de acceso se basa en permisos de lectura (r), escritura (w) y ejecución (x), definidos para el propietario, el grupo y otros usuarios. Este modelo garantiza seguridad y aislamiento entre usuarios.
 
 % ==========================================
 % SECCIÓN 9: Rutas relativas y absolutas
@@ -92,6 +134,30 @@
 
 % TODO (Cristian): Investiga y escribe sobre rutas
 % Incluye: diferencias, ejemplos, cuándo usar cada una
+
+El sistema de archivos en GNU-Linux sigue una estructura jerárquica definida por el estándar Filesystem Hierarchy Standard (FHS). La jerarquía comienza en el directorio raíz, representado por \texttt{/}.
+
+Una \textbf{ruta absoluta} especifica la ubicación completa de un archivo desde el directorio raíz. Por ejemplo:
+
+\begin{quote}
+\texttt{/home/usuario/documentos/archivo.txt}
+\end{quote}
+
+Una \textbf{ruta relativa} define la ubicación respecto al directorio actual de trabajo. Por ejemplo:
+
+\begin{quote}
+\texttt{../documentos/archivo.txt}
+\end{quote}
+
+Las rutas relativas utilizan símbolos especiales:
+
+\begin{itemize}
+    \item \texttt{.} representa el directorio actual.
+    \item \texttt{..} representa el directorio padre.
+\end{itemize}
+
+El uso adecuado de rutas es esencial para la correcta navegación y manipulación del sistema de archivos.
+
 
 
 % ==========================================
@@ -103,6 +169,26 @@
 % TODO (Cristian): Investiga y escribe sobre redireccionamiento
 % Incluye: >, >>, <, |, ejemplos de uso
 
+En sistemas tipo Unix, incluidos GNU-Linux, cada proceso tiene asociados tres flujos estándar:
+
+\begin{itemize}
+    \item Entrada estándar (stdin)
+    \item Salida estándar (stdout)
+    \item Salida de error (stderr)
+\end{itemize}
+
+El redireccionamiento permite modificar el destino o la fuente de estos flujos.
+
+Los operadores más comunes son:
+
+\begin{itemize}
+    \item \texttt{\textgreater} redirige la salida estándar a un archivo, sobrescribiendo su contenido.
+    \item \texttt{\textgreater \textgreater} agrega la salida al final del archivo.
+    \item \texttt{<} redirige la entrada desde un archivo.
+    \item \texttt{|} (tubería) conecta la salida de un comando con la entrada de otro.
+\end{itemize}
+
+El redireccionamiento es fundamental para la automatización, el procesamiento de datos y la administración del sistema.
 
 % ==========================================
 % SECCIÓN 11: Clasificación de comandos
@@ -112,6 +198,32 @@
 
 % TODO (Cristian): Investiga y escribe sobre la clasificación de comandos
 % Incluye: tipos de comandos, internos, externos, alias
+
+Los comandos en GNU-Linux pueden clasificarse según su naturaleza y función.
+
+\subsection{Comandos internos}
+
+Son aquellos integrados en el shell. No requieren un ejecutable externo, ya que son interpretados directamente por el intérprete de comandos. Ejemplos: \texttt{cd}, \texttt{echo}, \texttt{exit}.
+
+\subsection{Comandos externos}
+
+Son programas ubicados en el sistema de archivos (generalmente en \texttt{/bin}, \texttt{/usr/bin}). Ejemplos: \texttt{ls}, \texttt{rm}, \texttt{mv}.
+
+\subsection{Alias}
+
+Son abreviaciones definidas por el usuario para simplificar comandos complejos. Se configuran mediante el comando \texttt{alias}.
+
+Además, los comandos pueden clasificarse según su función:
+
+\begin{itemize}
+    \item Gestión de archivos.
+    \item Administración del sistema.
+    \item Información del sistema.
+    \item Control de procesos.
+    \item Configuración de red.
+\end{itemize}
+
+Esta clasificación facilita la comprensión estructurada del sistema operativo y su conjunto de herramientas.
 
 
 % ==========================================
