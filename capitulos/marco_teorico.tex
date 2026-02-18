@@ -1,4 +1,4 @@
-% ==========================================
+﻿% ==========================================
 % CAPÍTULO: MARCO TEÓRICO
 % ==========================================
 
@@ -13,6 +13,69 @@
 % TODO (Jonatan): Investiga y escribe sobre máquinas virtuales
 % Incluye: definición, tipos, ventajas, desventajas, ejemplos
 
+\subsection*{Contexto histórico y evolución de la abstracción computacional}
+
+La virtualización contemporánea, a menudo percibida como una innovación nacida de la era del \textit{cloud computing}, es en realidad el resultado de una evolución técnica que comenzó hace más de seis décadas. Esta tecnología surge en la década de 1960, asociada inicialmente a los grandes centros de cálculo de instituciones bancarias, militares y universitarias \cite{camacho2020}. Se entiende fundamentalmente como la abstracción de los recursos de una computadora para su puesta en funcionamiento como una máquina virtual dentro de otra máquina física \cite{camacho2020}. Para comprender la naturaleza de las máquinas virtuales actuales, es imperativo analizar el entorno de la computación en aquel periodo, caracterizado por la escasez crítica de recursos y el costo exorbitante del hardware.
+
+Esencialmente, la virtualización consiste en agrupar servicios y aplicaciones de sistemas informáticos en un mismo hardware, de modo que los usuarios e incluso el propio sistema los visualicen como máquinas independientes \cite{camacho2020}. El punto de inflexión se produjo con la necesidad de optimizar el uso de los recursos institucionales y alcanzar la frontera tecnológica \cite{camacho2020}. Los componentes básicos que se establecieron en esta etapa y que persisten en las plataformas modernas son el anfitrión (\textit{host}), que se refiere a la máquina o sistema operativo donde reside la máquina virtual y el hipervisor; y el huésped (\textit{guest}), que corresponde a la instancia virtualizada \cite{camacho2020}.
+
+La evolución del término se ha ajustado constantemente a las demandas de los usuarios, ganando una importancia crítica en el mundo de las tecnologías de la información por su capacidad para mejorar la eficiencia de las fuentes mediante el suministro de una plataforma operativa integrada basada en la acumulación de activos independientes y disímiles \cite{sharma2021}. Con la eventual introducción de las extensiones de hardware en procesadores modernos, como Intel VT y Arm VE, la virtualización se ha consolidado en una amplia gama de aplicaciones, desde la computación en la nube hasta los sistemas embebidos \cite{rodriguez2022}.
+
+\subsection*{Fundamentos teóricos de la virtualización y la abstracción de recursos}
+
+En su esencia técnica, la virtualización es un mecanismo de abstracción que rompe el acoplamiento rígido entre el software y el hardware físico. Este proceso permite la multiplexación de recursos físicos, permitiendo que una sola CPU, un bloque de memoria o una interfaz de red sean compartidos por múltiples entidades lógicas, operando bajo la premisa de tener acceso exclusivo al hardware. El objetivo primordial es mejorar la eficiencia de los recursos y proporcionar a los programas un entorno de ejecución unificado \cite{sharma2021}.
+
+\subsubsection*{Niveles de abstracción y propuesta taxonómica}
+
+La virtualización puede implementarse en distintos niveles de la pila computacional. Ante la proliferación de tecnologías, se han propuesto nuevos modelos taxonómicos que combinan el enfoque del ``Nivel de Abstracción'' con el ``Tipo de Máquina Virtual'' para facilitar la visualización y elección de la tecnología adecuada según el contexto \cite{rodriguez2022}.
+
+En la virtualización a nivel de hardware, o virtualización completa, un hipervisor crea una representación virtual del conjunto completo de instrucciones. Recientemente, se ha explorado el soporte de virtualización en arquitecturas abiertas como RISC-V (núcleo CVA6), donde se implementan mejoras microarquitecturales como el \textit{G-Stage Translation Lookaside Buffer} (GTLB) y el L2 TLB para mitigar la sobrecarga de rendimiento asociada a la traducción de direcciones \cite{sa2023}.
+
+Por otro lado, existen niveles de abstracción más específicos, como la virtualización a nivel de sistema operativo (contenedores) y la virtualización a nivel de biblioteca o API, que permite la ejecución de aplicaciones de un sistema operativo en otro (como el caso de Wine) \cite{rodriguez2022}. Asimismo, ha surgido la virtualización de enlaces y redes inalámbricas (WLV/WNV), que permite compartir recursos de red inalámbrica entre múltiples redes virtuales o proveedores de servicios \cite{vandebelt2017}.
+
+\subsubsection*{Taxonomía de los hipervisores y su rol operativo}
+
+El hipervisor, o Monitor de Máquina Virtual (VMM), es el componente central que gestiona el ciclo de vida de las máquinas virtuales. La industria reconoce diversas implementaciones de tipo 1 (\textit{bare-metal}), destacando entre las más utilizadas en entornos Linux a VMware ESXi, Xen, KVM (sobre Debian-12) y Proxmox VE \cite{djordjevic2025}.
+
+\begin{table}[h!]
+\centering
+\caption{Comparativa entre hipervisores Tipo 1 y Tipo 2}
+\begin{tabular}{|p{3.5cm}|p{5cm}|p{5cm}|}
+\hline
+\textbf{Métrica} & \textbf{Tipo 1 (Bare-Metal)} & \textbf{Tipo 2 (Hosted)} \\
+\hline
+Arquitectura de Software & Se instala directamente sobre el hardware físico; no requiere un SO anfitrión. & Se ejecuta como una aplicación sobre un sistema operativo convencional. \\
+\hline
+Acceso a Recursos & Directo al hardware, permitiendo una gestión más eficiente y de baja latencia. & Indirecto, a través de las APIs del sistema operativo anfitrión. \\
+\hline
+Rendimiento Relativo & Superior, optimizado para entornos de servidores y centros de datos \cite{djordjevic2025}. & Moderado, adecuado para desarrollo y pruebas individuales. \\
+\hline
+Seguridad y Aislamiento & Alta seguridad por su superficie de ataque reducida. & Seguridad moderada; dependiente de la integridad del SO anfitrión. \\
+\hline
+\end{tabular}
+\end{table}
+
+Los hipervisores de Tipo 1 son la piedra angular de la infraestructura de nube moderna. Su rendimiento puede ser analizado mediante herramientas como Filebench, que permite simular comportamientos de aplicaciones y servidores reales para comparar la eficiencia de los sistemas de archivos en entornos virtualizados \cite{djordjevic2025}.
+
+\subsection*{Arquitectura interna de una Máquina Virtual}
+
+\subsubsection*{Virtual CPU (vCPU) y Gestión de Memoria}
+
+La vCPU es una abstracción lógica programada sobre núcleos físicos. Uno de los mayores desafíos en su arquitectura es la sobrecarga de rendimiento generada por la gestión de memoria. En arquitecturas modernas de alto rendimiento, como RISC-V, el diseño se enfoca en optimizar el PPA (\textit{Performance, Power, and Area}) mediante simulaciones post-layout en tecnologías de 22nm FDX \cite{sa2023}. El uso de estructuras como el GTLB permite aliviar el impacto de la traducción de direcciones en dos etapas, un proceso crítico para mantener la eficiencia en entornos virtualizados \cite{sa2023}.
+
+\subsubsection*{Virtualización de E/S y Redes Predictivas}
+
+La virtualización de dispositivos de entrada/salida ha evolucionado para ofrecer un rendimiento predecible y aislamiento entre inquilinos. Tecnologías como PicNIC se centran en garantizar la previsibilidad de las tarjetas de interfaz de red (NIC) virtualizadas \cite{kumar2019}.
+
+Para eliminar problemas como el bloqueo de cabeza de línea (\textit{Head-of-Line blocking} o HoL) entre flujos con y sin limitación de tasa, se han desplegado soluciones como las terminaciones fuera de orden (\textit{OOO completions}) y el sistema de Contabilidad de Paquetes (\textit{Packet Accounting}), lo que puede mejorar la latencia de cola en aproximadamente un 13\% \cite{kumar2019}. En la entrada de datos, el uso de colas CWFQ (\textit{Class-based Weighted Fair Queuing}) junto con mecanismos de control de congestión permite una reducción del 96\% en la pérdida de paquetes en las colas de recepción de la NIC, incluso bajo escenarios de ataques DoS o cargas de trabajo tipo \textit{incast} \cite{kumar2019}.
+
+\subsubsection*{Almacenamiento y Redes Inalámbricas Virtualizadas}
+
+El almacenamiento se gestiona mediante abstracciones que permiten la consolidación y el uso eficiente del espacio físico. Además, la virtualización se ha extendido al dominio inalámbrico para abordar la escasez de espectro y la necesidad de infraestructuras compartidas. La Virtualización de Redes Inalámbricas (WNV) abstrae los recursos físicos del espectro y la infraestructura de red en múltiples recursos virtuales aislados, facilitando el soporte de diversas aplicaciones sobre una misma base física \cite{vandebelt2017}.
+
+\subsection*{Conclusión}
+
+La virtualización ha pasado de ser un método para optimizar grandes centros de cálculo en los años 60 a ser la infraestructura invisible que sostiene la economía digital actual \cite{camacho2020}. La integración de mejoras en el hardware, como los sistemas de traducción de direcciones eficientes en procesadores RISC-V \cite{sa2023} y las arquitecturas de red virtualizadas con rendimiento predecible \cite{kumar2019}, ha permitido que esta tecnología alcance niveles de eficiencia cercanos al rendimiento nativo. La comprensión de sus diversos niveles de abstracción y taxonomías sigue siendo esencial para la innovación en infraestructuras tecnológicas robustas y escalables \cite{rodriguez2022}.
 
 % ==========================================
 % SECCIÓN 2: Distribuciones de GNU-Linux
@@ -22,6 +85,71 @@
 
 % TODO (Jonatan): Investiga y escribe sobre las distribuciones de GNU-Linux
 % Incluye: qué son, principales distribuciones, características
+
+Una \textbf{distribución GNU/Linux} (abreviada comúnmente como “distro”) es un sistema operativo completo construido a partir de una colección de software basada en el núcleo (\textit{kernel}) Linux, complementado con bibliotecas, herramientas GNU, utilidades de usuario y, frecuentemente, un sistema de gestión de paquetes. El ecosistema Linux ha experimentado un crecimiento masivo, alcanzando actualmente más de seiscientas distribuciones, de las cuales más de trescientas se mantienen activas \cite{keil2018}. Estas surgieron a principios de los años 90 con el fin de simplificar el proceso de configuración y hacer accesible el núcleo más allá de los expertos en computación. Las primeras distros, como \textit{MCC Interim Linux} (1992), \textit{Slackware} (1993) y \textit{Debian} (1993), ya integraban instaladores y paquetes de software esenciales para facilitar su despliegue. Cada distribución selecciona versiones específicas de componentes según su filosofía de diseño; por ejemplo, Debian se distingue por su compromiso institucional con el software exclusivamente libre, mientras que otras como Ubuntu, Fedora o RHEL permiten la inclusión de componentes propietarios o \textit{firmware} privado por razones pragmáticas \cite{mateos2008}
+
+\subsection*{Filosofías de diseño y modelos de gobernanza}
+
+Las distribuciones difieren fundamentalmente según su modelo de gobernanza y financiamiento. Las \textbf{soportadas comercialmente} (como Fedora, openSUSE o Ubuntu) cuentan con el patrocinio de empresas como Red Hat, SUSE y Canonical, respectivamente, mientras que las de \textbf{comunidad} (como Debian, Arch Linux o Gentoo) se rigen por principios técnicos, éticos y estructuras descentralizadas de autoridad \cite{feitelson2012}\cite{mateos2008}.
+
+\begin{itemize}
+
+    \item \textbf{Comunidades vs.\ empresas:} Las organizaciones comunitarias como Debian enfatizan la identidad colectiva y la libertad del software, mientras que las corporativas buscan ofrecer estabilidad para clientes empresariales (RHEL) o actuar como bancos de pruebas para la innovación comercial (Fedora) \cite{feitelson2012}\cite{mateos2008}.
+
+    \item \textbf{Modelos de liberación:} Los ciclos de desarrollo varían significativamente. Algunas distribuciones siguen ciclos fijos con versiones regulares (como Ubuntu LTS cada 2 años o RHEL cada 2--3 años) para ofrecer estabilidad a largo plazo. Otras adoptan el modelo \textit{rolling release}, con actualizaciones continuas de paquetes (como Arch u openSUSE Tumbleweed) \cite{ioanas2017}\cite{nandha2025}. Un caso notable es Gentoo, una ``metadistribución'' \textit{rolling-release} que permite un control total sobre las versiones y opciones de compilación mediante archivos de configuración en texto plano \cite{ioanas2017}.
+
+    \item \textbf{Licenciamiento y patentes:} Aunque predomina el uso de licencias de código abierto (como la GPL), el manejo de \textit{software} propietario y patentes de estándares esenciales (SEP) genera tensiones \cite{maracke2019}. Mientras Debian garantiza un entorno 100\% libre, Ubuntu y RHEL facilitan la instalación de controladores privativos. El ecosistema se ve afectado por la complejidad de mediar entre las licencias FOSS y los regímenes de patentes FRAND (\textit{Fair, Reasonable and Non-Discriminatory}) \cite{maracke2019}.
+
+    \item \textbf{Ecosistemas derivados y fragmentación:} La naturaleza abierta permite la creación de familias (Debian$\to$Ubuntu$\to$Linux Mint; RHEL$\to$Fedora y Rocky/AlmaLinux). Sin embargo, esta diversidad genera un problema de fragmentación que dificulta la adopción masiva en mercados de consumo, al carecer de una experiencia de usuario estandarizada similar a Windows o macOS \cite{nandha2025}.
+\end{itemize}
+    
+
+\subsection*{Taxonomía por caso de uso}
+
+Las distribuciones se especializan para cubrir necesidades específicas del mercado y la investigación:
+
+\begin{itemize}
+    \item \textbf{Escritorio / uso generalista:} Orientadas al usuario final, priorizan la facilidad de uso y la compatibilidad de hardware, incluyendo entornos como GNOME o KDE \cite{nandha2025}.
+    
+    \item \textbf{Servidor / gubernamental / empresarial:} Diseñadas para la estabilidad operativa 24x7. Además de RHEL o SLES, existen iniciativas como \textbf{GobLin}, una distribución diseñada específicamente para la administración pública que ofrece un paquete ``todo en uno'' con aplicaciones gubernamentales esenciales, optimizando el mantenimiento de la infraestructura TI del Estado \cite{brys2022}.
+
+    \item \textbf{Cómputo de Alto Rendimiento (HPC) y Ciencia:} Adaptadas a clústeres científicos y entornos de investigación. Gentoo, por ejemplo, es valorado en neurociencia por su capacidad de proporcionar acceso directo a versiones de desarrollo y optimizaciones de hardware específicas \cite{ioanas2017}. Asimismo, proyectos como \textbf{NeuroDebian} han establecido marcos de trabajo para la gestión automática de software científico \cite{ioanas2017}.
+
+    \item \textbf{Sistemas embebidos / IoT:} Herramientas como Yocto Project permiten crear distribuciones a medida para dispositivos con recursos limitados \cite{bhaganagare2015}.
+
+    \item \textbf{Especializadas y Seguridad:} Incluyen distros para pruebas de penetración (Kali Linux) o privacidad extrema (Tails).
+\end{itemize}
+    
+
+\subsection*{Sistemas de gestión de paquetes}
+
+El gestor de paquetes es el eje técnico que define la administración de cada familia:
+
+\begin{itemize}
+    \item \textbf{DEB (APT/dpkg):} Utilizado por Debian y Ubuntu; emplea el \textit{front-end} APT para la resolución automática de dependencias \cite{bhaganagare2015}.
+
+    \item \textbf{RPM (DNF/Zypper):} Estándar en RHEL, Fedora y openSUSE. DNF ha mejorado la eficiencia en la resolución de dependencias respecto a su predecesor YUM \cite{bhaganagare2015}\cite{nandha2025}.
+
+    \item \textbf{Pacman (Arch Linux):} Opera con paquetes comprimidos y se apoya en el \textit{Arch User Repository} (AUR) para ampliar el catálogo de software mediante scripts de construcción.
+
+    \item \textbf{Portage (Gentoo):} Es un sistema basado en código fuente (\textit{source-based}). Utiliza scripts denominados ``ebuilds'' para descargar, compilar e instalar software localmente, permitiendo una optimización extrema para el hardware de destino \cite{ioanas2017}.
+\end{itemize}
+
+La evolución del sistema de paquetes tiende hacia la estandarización mediante formatos universales como \textbf{Flatpak} o \textbf{Snap}, que buscan mitigar los conflictos de dependencias entre distribuciones \cite{nandha2025}.
+
+\subsection*{Criterios de selección para proyectos}
+
+La elección de una distribución debe considerar el ciclo de vida del \textit{kernel} Linux, el cual sigue un modelo de desarrollo perpetuo con un crecimiento constante del código fuente \cite{feitelson2012}\cite{tadokoro2025}.
+
+\begin{itemize}
+    \item \textbf{Mantenimiento y Seguridad:} El ecosistema se estructura con el ``mainline'' como upstream, del cual se derivan versiones estables o de largo soporte (LTS) \cite{li2024}. Las distribuciones actúan como ``downstreams'' que deben portar parches de seguridad y correcciones de errores de manera oportuna para proteger al usuario final \cite{li2024}.
+
+    \item \textbf{Sostenibilidad:} Proyectos críticos como el propio núcleo enfrentan desafíos de sostenibilidad a largo plazo y renovación de la fuerza laboral, lo que influye en la fiabilidad de las distribuciones que dependen de él \cite{tadokoro2025}.
+
+    \item \textbf{Documentación y Comunidad:} La riqueza de wikis y foros activos (como los de Debian o Arch) es un factor determinante para reducir el costo total de propiedad (TCO), facilitando la resolución de incidencias sin necesidad de soporte comercial pago \cite{mateos2008}\cite{nandha2025}.
+\end{itemize}
+    
+
 
 
 % ==========================================
@@ -33,6 +161,149 @@
 % TODO (Jonatan): Investiga y escribe sobre los requisitos de instalación
 % Incluye: requisitos mínimos y recomendados de hardware
 
+El desarrollo de sistemas operativos basados en el núcleo Linux ha transitado desde ser un proyecto de aficionados hasta convertirse en el pilar fundamental de la infraestructura tecnológica global, impulsando desde supercomputadoras y nubes públicas hasta dispositivos móviles y sistemas embebidos \cite{chilla2025}. Su arquitectura modular y su evolución han impactado profundamente en la infraestructura organizacional moderna \cite{chilla2025}. El despliegue operativo de una distribución GNU/Linux moderna no es una tarea trivial; requiere una comprensión profunda de la interacción entre el hardware, el firmware, las capas de abstracción de almacenamiento y los protocolos de red \cite{chilla2025}. Este informe analiza exhaustivamente las condiciones necesarias y suficientes para garantizar una instalación exitosa y un mantenimiento sostenible, estructurado bajo un rigor técnico orientado a profesionales de la administración de sistemas e ingenieros de infraestructura.
+
+\subsection*{Contexto Histórico y Evolución de los Métodos de Instalación}
+
+La génesis de Linux se remonta a 1991, cuando Linus Torvalds, entonces estudiante de la Universidad de Helsinki, anunció el desarrollo de un núcleo gratuito para clones AT con procesadores 386 y 486. En sus inicios, Linux no era un sistema operativo completo; carecía de los componentes de usuario necesarios para ser funcional, una brecha que fue cerrada mediante la integración de las herramientas desarrolladas por el proyecto GNU. Esta simbiosis dio lugar a las primeras distribuciones, diseñadas para cerrar la brecha entre el software y el hardware mediante colecciones empaquetadas \cite{chilla2025}.
+
+A medida que el ecosistema maduró, surgieron bifurcaciones críticas en el modelo de distribución. Tras cambios en la política de distribución de Red Hat, surgieron proyectos como Fedora (patrocinado por Red Hat como plataforma beta) y CentOS, este último diseñado por profesionales para ser una solución empresarial robusta y gratuita \cite{vazquez2016}. Durante los primeros años de la década de 1990, los requisitos de instalación eran extremadamente manuales y demandantes. El acceso a Linux 0.12, por ejemplo, se realizaba mediante disquetes de 5.25 pulgadas: uno para el arranque (boot) y otro para el sistema de archivos raíz (root). Para instalar el sistema en un disco duro, el administrador debía poseer un conocimiento técnico avanzado que incluía el uso de editores hexadecimales para modificar el Master Boot Record (MBR).
+
+La aparición de la Manchester Computing Centre (MCC) Interim Linux en 1992 marcó un hito al introducir el primer instalador basado en menús. Sin embargo, fue la inestabilidad de proyectos tempranos como Softlanding Linux System (SLS) lo que catalizó la creación de los pilares de la infraestructura moderna: Slackware y Debian. La evolución desde los disquetes hacia los CDs, DVDs y finalmente las imágenes de red (netinstall) ha transformado radicalmente los requisitos de infraestructura, permitiendo el despliegue de sistemas en entornos críticos que van desde servidores empresariales hasta sistemas de tiempo real deterministas \cite{reghenzani2019}.
+
+\subsection*{Requisitos Técnicos de Hardware}
+
+El despliegue de un sistema GNU/Linux requiere una evaluación meticulosa de la arquitectura del procesador, la gestión de la memoria RAM y la compatibilidad de los periféricos. El núcleo Linux emplea una arquitectura monolítica que, a pesar de su tamaño, mantiene la flexibilidad mediante módulos cargables que permiten añadir funcionalidades de hardware sin reiniciar el sistema \cite{chilla2025}.
+
+\subsubsection*{Arquitecturas de CPU y Soporte del Núcleo}
+
+La arquitectura x86\_64 domina el panorama de servidores, pero el soporte para otras arquitecturas ha crecido exponencialmente. En el ámbito de los sistemas embebidos de criticidad mixta, la virtualización ha emergido como una solución para lograr un aislamiento espacial y temporal fuerte, incluso en plataformas con recursos limitados como ARMv8 y RISC-V \cite{martins2020}.
+
+\begin{table}[h!]
+\centering
+\caption{Arquitecturas de CPU y su soporte en el núcleo Linux}
+\begin{tabular}{|p{2.5cm}|p{4cm}|p{6cm}|}
+\hline
+\textbf{Arquitectura} & \textbf{Casos de Uso} & \textbf{Soporte en el Núcleo} \\
+\hline
+x86\_64 & Servidores, Desktops, Cloud & Paginación de 5 niveles, Intel TDX, AMD SNP, hasta 8192 CPUs. \\
+\hline
+ARM64 & Móviles, Edge, ARM Servers & Extensiones NEON, SVE/SME, particionamiento estático \cite{martins2020}. \\
+\hline
+RISC-V (64-bit) & I+D, Sistemas Abiertos, IoT & ISA modular, perfiles RVA22/23, extensiones vectoriales y ACPI. \\
+\hline
+s390x & Mainframes Enterprise & Driver QDIO Ethernet, VFIO AP para virtualización, zfcpdump. \\
+\hline
+PowerPC & Supercomputación, IBM Power & Memoria transaccional, PCI Bus EEH Error Recovery, NUMA avanzado. \\
+\hline
+\end{tabular}
+\end{table}
+
+Cada una de estas arquitecturas requiere un protocolo de arranque distinto. En sistemas x86\_64, el núcleo utiliza un protocolo que define la disposición de la memoria. En contraste, para aplicaciones que requieren un comportamiento determinista, como sistemas de control industrial, se hace necesario el uso del parche \texttt{PREEMPT\_RT}, que transforma a Linux en un núcleo de tiempo real mediante la reducción de la latencia de interrupciones y la gestión de secciones críticas \cite{reghenzani2019}.
+
+\subsubsection*{Recursos de Memoria y Procesamiento}
+
+Las condiciones necesarias de RAM y CPU varían según el propósito del sistema. Para una estación de trabajo moderna con entornos gráficos, el proceso de instalación a través de herramientas como \texttt{virt-manager} permite una asignación flexible de CPUs y memoria, facilitando la creación de máquinas virtuales sobre hipervisores KVM o QEMU \cite{sa2023}.
+
+\begin{table}[h!]
+\centering
+\caption{Requerimientos de CPU y RAM por tipo de sistema}
+\begin{tabular}{|p{3.5cm}|p{2.5cm}|p{2.5cm}|p{2.5cm}|}
+\hline
+\textbf{Tipo de Sistema} & \textbf{CPU Mínima} & \textbf{RAM Mínima} & \textbf{RAM Recomendada} \\
+\hline
+Servidor Minimal (Texto) & 1 GHz x86/ARM & 512 MB -- 1 GB & 2 GB+ \\
+\hline
+Escritorio Ligero (XFCE) & Dual-Core 1.5 GHz & 2 GB & 4 GB \\
+\hline
+Escritorio Pesado (GNOME) & Quad-Core 2 GHz & 4 GB & 8--16 GB \\
+\hline
+Hipervisor Tipo-1 (KVM/Proxmox) & Multi-core VT-x/AMD-V & 8 GB & 32 GB+ \\
+\hline
+Servidor de Bases de Datos & 8+ Cores Físicos & 16--64 GB & 128 GB+ \\
+\hline
+\end{tabular}
+\end{table}
+
+Es imperativo notar que la ejecución de múltiples máquinas virtuales simultáneamente sobre hipervisores como Proxmox VE o Xen impacta directamente en el rendimiento del sistema de archivos, siendo XFS y Ext4 opciones consistentes en entornos de virtualización total \cite{djordjevic2025}.
+
+\subsubsection*{Firmware y Seguridad: UEFI, Secure Boot y MOK}
+
+El firmware gestiona la seguridad inicial del sistema. UEFI ofrece un entorno pre-sistema operativo con capacidades avanzadas. El mecanismo de \textbf{Secure Boot} garantiza que solo el software firmado por autoridades de confianza pueda ejecutarse. Si un administrador necesita cargar módulos de terceros, debe utilizar el sistema de \textbf{Machine Owner Keys (MOK)}, enrolando la llave pública en la base de datos del firmware mediante \texttt{MokManager} \cite{negus2015}.
+
+\subsubsection*{Virtualización y Periféricos}
+
+La virtualización es un pilar del despliegue moderno. Mientras que hipervisores como KVM y Xen fueron diseñados originalmente para servidores, arquitecturas de particionamiento estático como \textbf{Bao} se han desarrollado para sistemas embebidos modernos, ofreciendo un hipervisor ligero y minimalista que evita la dependencia de Linux para arrancar sus máquinas virtuales \cite{martins2020}. Por otro lado, en entornos de centros de datos, la comparación de rendimiento entre KVM y Proxmox muestra que la elección del hipervisor puede influir en la eficiencia de las operaciones de entrada/salida del sistema de archivos \cite{djordjevic2025}.
+
+\subsection*{Requisitos de Almacenamiento y Particionado}
+
+La organización del almacenamiento define la resiliencia de los datos. La implementación de sistemas de archivos no solo es una cuestión de capacidad, sino de jerarquía y tipos de inodos disponibles para la gestión de metadatos \cite{nieh2025}.
+
+\subsubsection*{Esquemas de Particionado: MBR vs.~GPT}
+
+El esquema \textbf{GPT (GUID Partition Table)} es el estándar actual para sistemas UEFI, eliminando las limitaciones de 2 TB y el máximo de cuatro particiones primarias de MBR. GPT ofrece redundancia al almacenar copias de la tabla de particiones en diferentes sectores del disco, una condición esencial para la integridad en servidores modernos.
+
+\subsubsection*{Comparativa Técnica de Sistemas de Archivos}
+
+La elección del sistema de archivos es crítica para el rendimiento. Pruebas de rendimiento con herramientas como \texttt{Filebench} demuestran que sistemas como Ext4 muestran un desempeño superior en ciertas operaciones de escritura secuencial en entornos virtualizados, mientras que XFS escala mejor en archivos de gran tamaño \cite{djordjevic2025}.
+
+\begin{table}[h!]
+\centering
+\caption{Comparativa de sistemas de archivos Linux}
+\begin{tabular}{|p{2cm}|p{3cm}|p{4cm}|p{4cm}|}
+\hline
+\textbf{Sistema} & \textbf{Integridad} & \textbf{Ventajas} & \textbf{Limitaciones} \\
+\hline
+Ext4 & Journaling de metadatos & Soporte universal, alta fiabilidad en virtualización \cite{djordjevic2025}. & Límites fijos de inodos \cite{nieh2025}; sin checksums nativos. \\
+\hline
+XFS & B+ Tree metadata & Escalabilidad masiva y rendimiento paralelo \cite{djordjevic2025}. & No permite reducción de tamaño. \\
+\hline
+Btrfs & B-Trees / Checksums \cite{rodeh2013} & Snapshots, clones y gestión de volúmenes \cite{rodeh2013}. & Impacto en rendimiento bajo cargas intensas \cite{djordjevic2025}. \\
+\hline
+ezFS & Pedagógico & Enseñanza de estructuras de archivos \cite{nieh2025}. & No apto para producción. \\
+\hline
+\end{tabular}
+\end{table}
+
+El sistema \textbf{Btrfs} destaca por su diseño basado en estructuras de B-trees para casi todos sus metadatos, permitiendo un manejo eficiente de archivos pequeños, directorios indexados y snapshots mediante copy-on-write (CoW) \cite{rodeh2013}.
+
+\subsubsection*{LVM y Redundancia}
+
+LVM (Logical Volume Manager) introduce flexibilidad al permitir el redimensionamiento en caliente y la creación de instantáneas para respaldos consistentes \cite{chilla2025}. En despliegues críticos, el RAID por software (\texttt{mdadm}) ofrece independencia del hardware, permitiendo que un array de discos sea reensamblado en cualquier sistema Linux compatible en caso de fallo de la placa base \cite{chilla2025}.
+
+\subsection*{Requisitos de Red e Infraestructura}
+
+Un despliegue operativo moderno requiere conectividad persistente y automatización. Los servicios de red son fundamentales para el rol de Linux como sistema operativo de servidor robusto \cite{vazquez2016}.
+
+\begin{itemize}
+    \item \textbf{Configuración de Red:} Herramientas como \texttt{nmcli} en CentOS permiten una gestión granular de interfaces \cite{vazquez2016}. Los requisitos incluyen IP estática, puerta de enlace y DNS, este último configurado usualmente en \texttt{/etc/resolv.conf}.
+    \item \textbf{Automatización:} Para despliegues masivos, se utiliza PXE (Preboot Execution Environment), donde un cliente descarga el cargador de arranque y el \texttt{initrd} vía TFTP \cite{negus2015}.
+    \item \textbf{Instalación:} El proceso de instalación puede realizarse mediante medios locales (ISO), medios vivos o instalaciones por red, permitiendo verificar la conectividad mediante herramientas como \texttt{ping} antes de finalizar el despliegue \cite{negus2015}.
+\end{itemize}
+
+\subsection*{Competencias y Prerrequisitos del Administrador}
+
+El éxito del despliegue depende del dominio técnico del administrador, especialmente en la gestión de permisos y el diagnóstico del sistema.
+
+\subsubsection*{Gestión de Usuarios y Permisos}
+
+En GNU/Linux, cada archivo y directorio pertenece a un usuario y a un grupo específico \cite{storchak2020}. El sistema organiza los derechos de acceso en tres niveles: propietario, grupo y otros \cite{storchak2020}.
+
+\begin{itemize}
+    \item \textbf{Derechos de Acceso:} Consisten en lectura (\textit{read}), escritura (\textit{write}) y ejecución (\textit{execute}) \cite{storchak2020}.
+    \item \textbf{Administración:} Solo el usuario \textbf{Root} posee acceso total a todos los archivos, independientemente de los permisos establecidos \cite{storchak2020}. La organización de usuarios en grupos es vital para gestionar los servicios que se ejecutan en el sistema \cite{storchak2020}.
+\end{itemize}
+
+\subsubsection*{Diagnóstico y Recuperación}
+
+El administrador debe ser capaz de interpretar el buffer de mensajes del núcleo mediante \texttt{dmesg} y gestionar los logs del sistema para identificar fallos de hardware o de controladores \cite{chilla2025}. Además, es esencial seguir estrategias de recuperación y respaldo para garantizar la continuidad del negocio frente a desastres.
+
+\subsection*{Conclusión}
+
+El despliegue de sistemas GNU/Linux ha evolucionado hacia una disciplina de ingeniería que combina la selección de hardware, la optimización de sistemas de archivos como XFS o Btrfs \cite{rodeh2013}, y una gestión rigurosa de los derechos de usuario \cite{storchak2020}. La integración de tecnologías de virtualización modernas \cite{djordjevic2025} y la automatización mediante red \cite{vazquez2016} son condiciones suficientes para mantener la estabilidad y escalabilidad que demandan las organizaciones contemporáneas \cite{chilla2025}.
+
+
+
 
 % ==========================================
 % SECCIÓN 4: Estadísticas de uso
@@ -43,6 +314,38 @@
 % TODO (Jonatan): Investiga y escribe sobre estadísticas de uso
 % Incluye: porcentaje de uso, sectores donde se usa, tendencias
 
+La evolución del ecosistema de software en las últimas tres décadas ha estado marcada por un fenómeno de colaboración abierta sin precedentes que ha transformado la arquitectura digital de la sociedad moderna. El surgimiento y la posterior consolidación de GNU/Linux no representan únicamente un hito en la ingeniería de sistemas, sino un cambio fundamental en los paradigmas económicos y estratégicos de la tecnología de la información, donde la cuota de mercado se ha identificado como un motor crítico de la rentabilidad empresarial \cite{bhattacharya2022}. Este reporte analiza la trayectoria y los factores determinantes que han llevado a un sistema operativo iniciado como un proyecto personal a dominar sectores estratégicos, evaluando las metodologías de medición y los modelos matemáticos que explican su estabilidad competitiva.
+
+\subsection*{Contexto Histórico: La Génesis del Kernel y la Filosofía del Software Libre}
+
+Para comprender la posición actual de GNU/Linux, resulta imperativo retroceder a la década de 1980, un periodo donde el sistema operativo UNIX era el estándar académico. El desarrollo del kernel por Linus Torvalds en 1991 permitió una comunicación eficiente en arquitecturas Intel 386, evolucionando desde un proyecto personal hasta una infraestructura robusta. Esta evolución técnica ha sido fundamental para su adopción empresarial; sin embargo, para mantener su posición, los líderes de plataformas deben realizar inversiones crecientes en ciberseguridad, disminuyendo así la vulnerabilidad del sistema frente a amenazas externas \cite{arce2018}.
+
+En el ámbito de la seguridad, la relación entre la cuota de mercado y el nivel de protección se puede analizar mediante la teoría de juegos. En un estado de equilibrio, la cuota de mercado de una plataforma se define como la raíz cuadrada de la razón entre la vulnerabilidad de su competidor y su propia vulnerabilidad \cite{arce2018}. Por tanto, la dominancia de Linux en sectores críticos no solo depende de su funcionalidad, sino de una reducción constante de su superficie de ataque para mitigar la proliferación de malware a través de externalidades de red \cite{arce2018}.
+
+\subsection*{Métricas de Cuota de Mercado: Una Realidad Fragmentada}
+
+La medición de la penetración de mercado de Linux presenta desafíos metodológicos significativos. La presencia de errores de medición y errores de clasificación en los datos puede sesgar los resultados o provocar una pérdida de potencia en los análisis estadísticos, lo que hace necesario el uso de herramientas de análisis de sesgo cuantitativo (QBA) para evaluar la sensibilidad de los resultados a estos desajustes \cite{gerlach2025}.
+
+\subsubsection*{Modelado de la Competencia en Dispositivos Móviles}
+
+En el sector de los dispositivos móviles, donde Android (basado en el kernel Linux) posee una presencia mayoritaria, la dinámica competitiva se puede estudiar mediante modelos de ``Depredador-Presa'' (Lotka-Volterra) \cite{nikolaieva2019}. Estos modelos permiten analizar el comportamiento dinámico de los indicadores de cuota de mercado y realizar pronósticos sobre la interacción entre competidores como Android e iOS \cite{nikolaieva2019}. Mediante el uso de sistemas de ecuaciones diferenciales, se ha determinado que la estabilidad de la cuota de mercado de estos sistemas operativos depende de coeficientes de interacción competitiva, permitiendo predecir su evolución en mercados específicos como el de Indonesia o a nivel global \cite{nikolaieva2019}\cite{puspita2024}.
+
+\subsubsection*{Rendimiento y Dominancia en la Nube}
+
+En el ámbito de la computación en la nube, la selección del proveedor se basa en gran medida en el rendimiento de las máquinas virtuales (VM). Estudios comparativos recientes sobre instancias de infraestructura como servicio (IaaS) que ejecutan distribuciones de Linux (como Ubuntu 20.04 LTS) han revelado variaciones significativas de rendimiento entre los principales proveedores \cite{zboril2025}. En pruebas de benchmarking exhaustivas que cubren áreas críticas de las VM, se ha observado que las soluciones de Amazon Web Services (AWS) tienden a superar en rendimiento a sus competidores directos, Microsoft Azure y Google Cloud, consolidando la eficiencia de Linux en entornos de virtualización de alta exigencia \cite{zboril2025}.
+
+\subsection*{Factores Determinantes de la Adopción y Experiencia de Usuario}
+
+La decisión de adoptar Linux responde a una evaluación de factores técnicos y humanos. La usabilidad desempeña un papel crucial en la experiencia del usuario e influye directamente en su satisfacción y percepción general de la solución de TI \cite{lazaruk2025}. Mediante análisis de seguimiento ocular (eye-tracking), se ha demostrado que el hábito tiene una influencia significativa en la forma en que los usuarios interactúan con las interfaces gráficas de usuario (GUI) \cite{lazaruk2025}. La comparación de interfaces entre sistemas operativos populares revela que la familiaridad y los patrones de búsqueda visual de los usuarios son determinantes para la eficiencia operativa en el entorno de escritorio \cite{lazaruk2025}.
+
+\subsubsection*{Análisis de Rentabilidad y Seguridad}
+
+Desde una perspectiva económica, la cuota de mercado es un impulsor de la utilidad de la firma, aunque esta relación está mediada por factores como la calidad percibida y el enfoque estratégico de la empresa \cite{bhattacharya2022}. En el contexto de Linux, la modularidad del kernel permite una optimización que favorece la reducción de vulnerabilidades. Según el análisis de juegos de malware, una plataforma líder debe invertir continuamente en seguridad para evitar que los creadores de malware se aprovechen de su amplia base de usuarios para propagar infecciones \cite{arce2018}. Esta inversión técnica no solo protege al usuario, sino que es una condición necesaria para preservar la hegemonía del mercado frente a plataformas competidoras \cite{arce2018}.
+
+\subsection*{Conclusiones}
+
+GNU/Linux se ha consolidado como la piedra angular de la infraestructura digital contemporánea. Su penetración de mercado, explicada por modelos de interacción competitiva \cite{nikolaieva2019}\cite{puspita2024} y sustentada por un rendimiento superior en entornos de nube \cite{zboril2025}, demuestra que la estabilidad del ecosistema depende de la mitigación de vulnerabilidades \cite{arce2018} y de la mejora continua de la experiencia del usuario \cite{lazaruk2025}. La capacidad de Linux para adaptarse a nuevas demandas tecnológicas garantiza su relevancia como estándar global en la economía de la información.
+
 
 % ==========================================
 % SECCIÓN 5: Escritorios GNOME y KDE
@@ -52,6 +355,54 @@
 
 % TODO (Jonatan): Investiga y escribe sobre GNOME y KDE
 % Incluye: diferencias, ventajas, características de cada uno
+
+Los entornos de escritorio de Linux proveen la capa gráfica de interacción usuario-sistema. Aunque Linux destaca por su superioridad técnica y flexibilidad, sigue siendo un sistema operativo de nicho en el mercado de consumo, con una cuota de mercado de escritorio de aproximadamente el 2,32% registrada en febrero de 2025. Esta limitada adopción masiva se debe a la fragmentación derivada de la coexistencia de múltiples distribuciones y entornos de escritorio, lo que dificulta una experiencia estandarizada para el usuario. En este contexto, en los años 90 surgieron dos proyectos principales: \textbf{GNOME} (iniciado en 1997 por Miguel de Icaza y Federico Mena) nació como alternativa libre usando GTK (muy ligado al principio “menos es más”). Poco después, en 1996, \textbf{KDE} fue anunciado por Matthias Ettrich como un \textbf{“Entorno de Escritorio Kool”} basado en Qt/C++ para usuarios de Unix. KDE buscaba ofrecer una experiencia rica y altamente configurable, mientras GNOME priorizaba consistencia y simplicidad. La versión 1.0 de GNOME se publicó en marzo de 1999, y la primera versión estable de KDE llegó en 1998. Ambos entornos han evolucionado con lanzamientos regulares (ciclo ~6 meses en GNOME y ~3 al año en Plasma/KDE) y adoptado estándares modernos para reducir la fragmentación técnica, como la migración a Wayland para modernizar la pila gráfica y la integración de systemd.
+
+\subsubsection*{Filosofía de diseño}
+
+GNOME se rige por el principio \textit{“Less is more”}: busca reducir la complejidad visual, cognitiva y de interacción para el usuario. Esta filosofía se alinea con los enfoques de diseño centrado en el usuario de la Interacción Humano-Computadora (HCI), los cuales buscan simplificar la interfaz ante el desafío que suponen las tecnologías emergentes en la vida cotidiana \cite{bala2021}. Su interfaz es limpia y consistente, evitando distracciones. En palabras de la misma documentación de GNOME: presionando la tecla \textbf{Super} se abre la vista general de Actividades, desde donde se lanzan aplicaciones o se gestionan espacios de trabajo. El diseño minimiza controles y menús superfluos, ofreciendo una experiencia \textit{autodidacta} y enfocada en el flujo de trabajo intermedio. En resumen, GNOME prioriza la simplicidad y claridad de interacción por sobre la extensiva personalización, buscando mitigar los efectos de la fragmentación mediante una experiencia de usuario (UX) unificada \cite{nandha2025}.
+
+\subsubsection*{Arquitectura técnica}
+
+GNOME está construido sobre \textbf{GTK4} con la librería \textbf{libadwaita} como tema y lenguaje de diseño. Libadwaita extiende GTK para cumplir las Guías de Interfaz Humana de GNOME e incluye soporte nativo para diseño \textit{responsivo}, facilitando la convergencia con dispositivos móviles. Además, GNOME se apoya en \textbf{Wayland} como servidor gráfico por defecto; este protocolo fue desarrollado para modernizar la visualización en Linux y eliminar las limitaciones de seguridad y rendimiento inherentes al legado sistema X11 \cite{nandha2025}. La sesión de GNOME Shell está integrada con \textbf{systemd-logind}, permitiendo que cada aplicación se ubique en su propio \textit{cgroup} de kernel para aplicar controles de recursos. Asimismo, GNOME impulsó el uso de \textbf{Flatpak} como formato de empaquetado universal. Esta iniciativa es crucial para resolver el problema de las dependencias de software y la fragmentación entre distribuciones, permitiendo que las aplicaciones funcionen de manera consistente en cualquier entorno \cite{nandha2025}.
+
+\subsubsection*{Paradigma de interacción}
+
+GNOME Shell introduce la \textbf{vista de Actividades}, que dedica pantalla completa a la gestión de ventanas, espacios de trabajo dinámicos y búsqueda universal. El uso de gestos táctiles es nativo, facilitando el uso en dispositivos modernos. Aunque el paradigma de trabajo en computadoras de escritorio basado en el modelo de mesa y silla ha sido el estándar durante décadas, GNOME busca evolucionar hacia entornos de escritorio interactivos y reconfigurables (RIDEs) que se adapten mejor a las necesidades dinámicas del usuario \cite{dominiak2025}. GNOME también permite extensiones (GNOME Shell Extensions) como mecanismo de personalización controlada, aunque la filosofía por defecto es ofrecer un diseño consistente y no fragmentado.
+
+\subsubsection*{Ecosistema de aplicaciones}
+
+GNOME incluye aplicaciones centrales como \textbf{Archivos (Nautilus)}, \textbf{Web (Epiphany)} y \textbf{Builder}. Estas aplicaciones utilizan GTK y libadwaita para ofrecer interfaces uniformes. El modelo de distribución oficial se apoya en Flatpak y Flathub, lo cual refuerza la consistencia del ecosistema y ayuda a superar los desafíos de usabilidad que históricamente han dificultado la adopción de Linux por parte de usuarios generales \cite{nandha2025}.
+
+\subsubsection*{Filosofía de diseño (KDE)}
+
+KDE Plasma adopta la filosofía de "poder al usuario": busca brindar \textbf{potencia} y \textbf{configurabilidad total}. El lema no oficial es que \textit{"tú decides"} cómo debe lucir y comportarse el escritorio. Esta diversidad de opciones refleja el espíritu de libertad y apertura de la comunidad de código abierto, aunque contribuye al debate sobre la estandarización necesaria para atraer a nuevos usuarios \cite{nandha2025}. La documentación de KDE enfatiza mejorar la usabilidad sin sacrificar flexibilidad; esto se refleja en su oferta de plasmoides (widgets), el sistema de actividades y el lanzador KRunner.
+
+\subsubsection*{Arquitectura técnica (KDE)}
+
+Plasma 6 está construido sobre \textbf{Qt 6} y \textbf{KDE Frameworks 6}. Su compositor de ventanas, \textbf{KWin}, soporta tanto X11 como Wayland, prefiriendo este último en versiones recientes por su capacidad para ofrecer visuales más fluidos y una arquitectura más segura que el sistema X11 tradicional \cite{nandha2025}. KWin es conocido por sus efectos avanzados de escritorio y su capacidad para optimizar el rendimiento desactivando la composición OpenGL si detecta carga alta. La arquitectura de KDE es altamente modular y se extiende a nuevos formatos como \textbf{Plasma Bigscreen}, una interfaz para televisores que utiliza la misma base tecnológica (Qt y Frameworks) para ofrecer una experiencia adaptada a mandos a distancia.
+
+\subsubsection*{Paradigma de interacción (KDE)}
+
+En KDE Plasma el usuario encuentra un \textbf{escritorio orientable a widgets} (\textit{plasmoides}) y un nivel de ajustes granular en \textit{System Settings}. Al igual que en GNOME, KDE integra capacidades para transformar el espacio de trabajo digital en un entorno altamente reconfigurable, permitiendo flujos de trabajo complejos a la medida del experto \cite{dominiak2025}. En Plasma 6.6 se añadió el asistente "Plasma Setup" para facilitar la configuración inicial, un esfuerzo por democratizar la experiencia y reducir la barrera de entrada para nuevos usuarios que buscan una alternativa estandarizada a sistemas comerciales \cite{nandha2025}.
+
+\subsubsection*{Ecosistema de aplicaciones (KDE)}
+
+El ecosistema se agrupa en \textbf{KDE Gear}, con herramientas como \textbf{Dolphin}, \textbf{Kate} y \textbf{Konsole}. Estas aplicaciones comparten frameworks comunes y muchas son multiplataforma. La robustez de este ecosistema permite a Linux dominar áreas especializadas como la computación en la nube y los sistemas embebidos, aunque la fragmentación de interfaces sigue siendo un reto para competir directamente con Windows y MacOS en el mercado de consumo \cite{nandha2025}.
+
+\subsection*{Comparativa técnica}
+
+\subsubsection*{Consumo de recursos y estabilidad}
+
+Las versiones modernas como GNOME 45/46 y Plasma 6.x han mejorado significativamente su eficiencia, requiriendo entre 1 y 2 GB de RAM. Ambos entornos garantizan estabilidad a través de diferentes ciclos: GNOME mediante lanzamientos semestrales predecibles y KDE mediante actualizaciones frecuentes y parches rápidos. Sin embargo, la multiplicidad de opciones y versiones entre distribuciones puede generar inconsistencias que afectan la productividad de los desarrolladores y la satisfacción del usuario final \cite{nandha2025}.
+
+\subsubsection*{Accesibilidad}
+
+GNOME destaca por su enfoque en la usabilidad universal con herramientas integradas como el lector de pantalla \textbf{Orca} y configuraciones de alto contraste. Por su parte, Plasma 6.6 ha reforzado su accesibilidad añadiendo filtros para daltonismo y soporte para "Slow Keys" bajo Wayland. Estos avances son fundamentales para que los sistemas de información modernos sean inclusivos y cumplan con los principios de ergonomía en la Interacción Humano-Computadora \cite{bala2021}.
+
+\subsection*{Conclusiones}
+
+GNOME y KDE representan dos respuestas distintas al reto de la fragmentación en Linux. Mientras GNOME apuesta por la simplicidad minimalista y una experiencia cohesiva basada en tecnologías como GTK4 y Flatpak, KDE Plasma ofrece poder y flexibilidad extrema sobre la base de Qt6 y KWin. Ambos proyectos están adoptando Wayland como estándar para modernizar la interacción gráfica y mejorar la seguridad \cite{nandha2025}. La elección depende del perfil del usuario: \textbf{GNOME} es ideal para quienes buscan un flujo de trabajo limpio y estandarizado, mientras que \textbf{KDE} satisface a quienes requieren control total sobre su entorno. A pesar de sus diferencias, ambos entornos son pilares para posicionar a Linux como una alternativa viable, siempre que se avance en la estandarización para superar su actual estatus de nicho en el mercado \cite{nandha2025}\cite{dominiak2025}.
 
 
 % ==========================================
@@ -308,7 +659,6 @@ Por ejemplo:
 
 \cite{variables_entorno}
 
-\newline
 \textbf{4. Revertir el valor de una variable de entorno Linux.}
 
 Para esto se puede usar el comando unset. La sintaxis del comando se ve de la siguiente manera:
@@ -323,25 +673,17 @@ Las partes del comando son:
 \end{itemize}
 
 \cite{variables_entorno}
-=======
-
->>>>>>> 1c7df2a6d6c3c5796c853af86b15b2ee525073b5
 
 % ==========================================
 % SECCIÓN 13: Comandos de GNU-Linux (Tabla 1)
 % RESPONSABLE: Frem Cortés José Angel
 % ==========================================
 \section{Comandos de GNU-Linux mostrados en la tabla 1}
-<<<<<<< HEAD
-=======
-
->>>>>>> 1c7df2a6d6c3c5796c853af86b15b2ee525073b5
 % TODO (José Angel): Investiga y escribe sobre los comandos de la Tabla 1
 % Describe brevemente qué hace cada comando y para qué sirve
 % Los comandos son: cal, clear, apt, rm, date, ifconfig, exit, mv, echo, df,
 % ps, more, time, du, ps -fea, less, uname, pstree, man, mkdir, w, kill,
 % cat, pico, who, trap, fg, nano, bash, pwd, cd, vi, wc, su, ls, apt-get, sudo
-<<<<<<< HEAD
 De acuerdo con el sitio web \cite{linux_comandos}, se tienen las siguientes descripciones de los comandos más utilizados al momento de trabajar en Linux.
 
 \textbf{cal:}

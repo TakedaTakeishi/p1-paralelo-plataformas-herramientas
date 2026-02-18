@@ -16,9 +16,6 @@
 % --- Codificación y tipografía ---
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-<<<<<<< HEAD
-\usepackage{lmodern}
-=======
 
 % Aplicar configuración de fuente desde proyecto.tex
 % Usa etoolbox para comparar strings
@@ -42,7 +39,6 @@
   % Usar fuente por defecto (Latin Modern)
   \usepackage{lmodern}
 \fi
->>>>>>> 1c7df2a6d6c3c5796c853af86b15b2ee525073b5
 
 % --- Idioma ---
 % TIP: Si escribes en otro idioma, cambia 'spanish' aquí.
@@ -96,8 +92,6 @@
 % --- Encabezados y pies de página ---
 \usepackage{fancyhdr}
 
-<<<<<<< HEAD
-=======
 % --- Formato de títulos (para aplicar tamaños personalizados) ---
 \usepackage{titlesec}
 
@@ -109,16 +103,10 @@
 \titleformat{\subsection}
   {\normalfont\bfseries}{\thesubsection}{1em}{\fontsize{\tamanoTituloTres}{\dimexpr\tamanoTituloTres*12/10\relax}\selectfont}
 
->>>>>>> 1c7df2a6d6c3c5796c853af86b15b2ee525073b5
 % --- Listas mejoradas ---
 \usepackage{enumitem}
 
 % --- Matemáticas ---
-<<<<<<< HEAD
-\usepackage{amsmath}
-\usepackage{amsfonts}
-\usepackage{amssymb}
-=======
 \ifusartimes
   % newtxmath ya carga amsmath e incluye los símbolos de AMS
   % No cargar amsfonts/amssymb para evitar conflictos
@@ -128,7 +116,6 @@
   \usepackage{amsfonts}
   \usepackage{amssymb}
 \fi
->>>>>>> 1c7df2a6d6c3c5796c853af86b15b2ee525073b5
 
 % --- Apéndices ---
 \usepackage[titletoc]{appendix}
@@ -136,7 +123,7 @@
 % --- Bibliografía ---
 % TIP: backend=biber es más moderno que bibtex.
 %      Compila con: pdflatex → biber → pdflatex → pdflatex
-\usepackage[backend=biber, style=numeric, sorting=none]{biblatex}
+\usepackage[backend=biber, style=ieee, sorting=none]{biblatex}
 \addbibresource{referencias.bib}
 
 % ==========================================

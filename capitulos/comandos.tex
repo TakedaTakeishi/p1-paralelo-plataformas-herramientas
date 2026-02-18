@@ -33,34 +33,113 @@
 % Explicación del resultado...
 
 \subsection{Comando ps}
-% TODO (Jonatan): Completa esta sección
+El comando \texttt{ps} (process status) muestra una instantánea de los procesos en ejecución en la sesión actual del terminal. Por defecto lista el PID (identificador del proceso), el terminal asociado, el tiempo de CPU consumido y el nombre del proceso.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{joni/ps}
+    \caption{Ejecución del comando \texttt{ps}}
+    \label{fig:joni_ps}
+\end{figure}
+
+En la salida se obervan los procesos activos en la sesión: el intérprete de comandos \texttt{bash} y el propio proceso \texttt{ps} lanzado para obtener la lista.
 
 \subsection{Comando more}
-% TODO (Jonatan): Completa esta sección
+El comando \texttt{more} es un paginador que permite visualizar el contenido de un archivo de texto o la salida de otro comando de forma paginada, es decir, pantalla por pantalla. El usuario avanza presionando la barra espaciadora y puede salir con la tecla \texttt{q}. A diferencia de \texttt{less}, \texttt{more} solo permite desplazamiento hacia adelante.
 
 \subsection{Comando time}
-% TODO (Jonatan): Completa esta sección
+El comando \texttt{time} mide el tiempo que tarda en ejecutarse un programa o comando. Reporta tres valores: \textit{real} (tiempo de reloj transcurrido), \textit{user} (tiempo de CPU consumido en modo usuario) e \textit{sys} (tiempo de CPU consumido en modo kernel).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{joni/time}
+    \caption{Ejecución del comando \texttt{time}}
+    \label{fig:joni_time}
+\end{figure}
+
+En el resultado se aprecia el tiempo total transcurrido (\textit{real}), el tiempo que el proceso utilizó la CPU en espacio de usuario (\textit{user}) y el tiempo empleado por llamadas al sistema operativo (\textit{sys}).
 
 \subsection{Comando du}
-% TODO (Jonatan): Completa esta sección
+El comando \texttt{du} (disk usage) reporta el espacio en disco utilizado por archivos y directorios. Sin argumentos adicionales muestra el tamaño de cada subdirectorio del directorio actual, expresado en bloques de 512 bytes o kilobytes según la configuración del sistema.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{joni/du}
+    \caption{Ejecución del comando \texttt{du}}
+    \label{fig:joni_du}
+\end{figure}
+
+La salida muestra el espacio ocupado por cada directorio y sus subdirectorios, lo que permite identificar qué carpetas consumen más almacenamiento.
 
 \subsection{Comando ps -fea}
-% TODO (Jonatan): Completa esta sección
+El comando \texttt{ps -fea} extiende la salida básica de \texttt{ps} mostrando \textbf{todos} los procesos del sistema (no solo los de la sesión actual). La opción \texttt{-f} activa el formato completo (UID, PID, PPID, prioridad, hora de inicio, terminal y comando), \texttt{-e} selecciona todos los procesos y \texttt{-a} incluye los procesos de otros usuarios.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{joni/ps2}
+    \caption{Ejecución del comando \texttt{ps -fea}}
+    \label{fig:joni_ps2}
+\end{figure}
+
+Se puede observar la lista completa de procesos del sistema con información detallada: el usuario propietario, el PID, el PID del proceso padre (PPID), el instante de inicio y la línea de comando completa con la que fue lanzado cada proceso.
 
 \subsection{Comando less}
-% TODO (Jonatan): Completa esta sección
+El comando \texttt{less} es un paginador avanzado para visualizar archivos de texto o salidas de comandos. Permite desplazarse tanto hacia adelante como hacia atrás con las teclas de dirección o las teclas \texttt{Page Up}/\texttt{Page Down}, buscar texto con \texttt{/} y salir con \texttt{q}. Es más versátil que \texttt{more} porque no carga el archivo completo en memoria.
 
 \subsection{Comando uname}
-% TODO (Jonatan): Completa esta sección
+El comando \texttt{uname} muestra información sobre el kernel y el sistema operativo en ejecución. Con la opción \texttt{-a} despliega toda la información disponible: nombre del kernel, hostname, versión del kernel, fecha de compilación, arquitectura del hardware y tipo de sistema operativo.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{joni/uname}
+    \caption{Ejecución del comando \texttt{uname}}
+    \label{fig:joni_uname}
+\end{figure}
+
+La salida revela el nombre del sistema operativo, el nombre del equipo en la red, la versión exacta del kernel de Linux junto con su fecha de compilación y la arquitectura del procesador (\texttt{x86\_64}).
 
 \subsection{Comando pstree}
-% TODO (Jonatan): Completa esta sección
+El comando \texttt{pstree} visualiza los procesos en ejecución en forma de árbol jerárquico, mostrando la relación padre-hijo entre ellos. Esto facilita comprender cómo los procesos se originan unos a partir de otros, partiendo típicamente del proceso \texttt{init} o \texttt{systemd} como raíz.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{joni/pstree}
+    \caption{Ejecución del comando \texttt{pstree}}
+    \label{fig:joni_pstree}
+\end{figure}
+
+En el árbol se puede apreciar la jerarquía de procesos: \texttt{systemd} como proceso raíz del sistema del que se derivan todos los demás servicios y procesos de usuario, incluyendo el terminal y los comandos ejecutados dentro de él.
 
 \subsection{Comando man}
-% TODO (Jonatan): Completa esta sección
+El comando \texttt{man} (manual) muestra las páginas del manual del sistema para un comando o función específica. Proporciona documentación detallada que incluye la descripción, sinopsis, opciones disponibles, ejemplos y referencias relacionadas. Es la fuente de referencia principal para aprender el uso de cualquier comando en GNU/Linux.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{joni/man1}
+    \caption{Página de manual: encabezado de la entrada}
+    \label{fig:joni_man1}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{joni/man2}
+    \caption{Página de manual: descripción de opciones}
+    \label{fig:joni_man2}
+\end{figure}
+
+Las figuras muestran la página de manual consultada, donde se distingue la sección \textit{NAME} con la descripción breve del comando, la sección \textit{SYNOPSIS} con su sintaxis y la sección \textit{DESCRIPTION} con la explicación detallada de cada opción.
 
 \subsection{Comando mkdir}
-% TODO (Jonatan): Completa esta sección
+El comando \texttt{mkdir} (make directory) crea uno o más directorios nuevos en el sistema de archivos. Con la opción \texttt{-p} crea también todos los directorios intermedios necesarios en la ruta indicada si estos no existen.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{joni/mkdir}
+    \caption{Ejecución del comando \texttt{mkdir}}
+    \label{fig:joni_mkdir}
+\end{figure}
+
+En la captura se observa la creación de un nuevo directorio y la verificación con \texttt{ls} de que el directorio fue creado exitosamente en la ubicación especificada.
 
 
 % ==========================================
@@ -233,7 +312,6 @@ La opción \texttt{-h} presenta los valores en formato legible (MB, GB).
 
 \subsection{Comando w}
 % TODO (José Angel): Completa esta sección
-<<<<<<< HEAD
 Este comando proporciona un resumen detallado del estado del sistema y de los usuarios con sesiones activas.
 Un ejemplo de su uso se puede apreciar en la siguiente imagen:
 \begin{figure}[H]
@@ -341,33 +419,6 @@ Un ejemplo de su uso se puede apreciar en la siguiente imagen:
     \caption{Resultado en terminal del comando bash. Fuente: Elaboración propia.}
     \label{fig:frem_comando9}
 \end{figure}
-=======
-
-\subsection{Comando kill -l -9}
-% TODO (José Angel): Completa esta sección
-
-\subsection{Comando cat}
-% TODO (José Angel): Completa esta sección
-
-\subsection{Comando pico}
-% TODO (José Angel): Completa esta sección
-
-\subsection{Comando who}
-% TODO (José Angel): Completa esta sección
-
-\subsection{Comando trap -l}
-% TODO (José Angel): Completa esta sección
-
-\subsection{Comando fg}
-% TODO (José Angel): Completa esta sección
-
-\subsection{Comando nano}
-% TODO (José Angel): Completa esta sección
-
-\subsection{Comando bash}
-% TODO (José Angel): Completa esta sección
-
->>>>>>> 1c7df2a6d6c3c5796c853af86b15b2ee525073b5
 
 % ==========================================
 % COMANDOS - Luna Gonzales Gabriel Alexis (9 comandos)
