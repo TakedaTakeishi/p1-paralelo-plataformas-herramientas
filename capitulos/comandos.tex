@@ -47,6 +47,22 @@ En la salida se obervan los procesos activos en la sesión: el intérprete de co
 \subsection{Comando more}
 El comando \texttt{more} es un paginador que permite visualizar el contenido de un archivo de texto o la salida de otro comando de forma paginada, es decir, pantalla por pantalla. El usuario avanza presionando la barra espaciadora y puede salir con la tecla \texttt{q}. A diferencia de \texttt{less}, \texttt{more} solo permite desplazamiento hacia adelante.
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{joni/more}
+    \caption{Ejecución del comando \texttt{more}: primera pantalla del archivo}
+    \label{fig:joni_more}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{joni/more2}
+    \caption{Ejecución del comando \texttt{more}: avance a la siguiente sección del archivo}
+    \label{fig:joni_more2}
+\end{figure}
+
+En las figuras \ref{fig:joni_more} y \ref{fig:joni_more2} se observa la visualización paginada de un archivo de texto. En la parte inferior de la pantalla aparece el indicador \texttt{--Más--} junto con el porcentaje de contenido ya visualizado, lo que permite conocer cuánto falta por recorrer. Al presionar la barra espaciadora se avanza a la siguiente pantalla hasta llegar al final del archivo. Además se puede notar que no puede manejar correctamente los valores unicode, mostrando caracteres extraños en lugar de acentos o símbolos especiales.
+
 \subsection{Comando time}
 El comando \texttt{time} mide el tiempo que tarda en ejecutarse un programa o comando. Reporta tres valores: \textit{real} (tiempo de reloj transcurrido), \textit{user} (tiempo de CPU consumido en modo usuario) e \textit{sys} (tiempo de CPU consumido en modo kernel).
 
@@ -86,6 +102,22 @@ Se puede observar la lista completa de procesos del sistema con información det
 \subsection{Comando less}
 El comando \texttt{less} es un paginador avanzado para visualizar archivos de texto o salidas de comandos. Permite desplazarse tanto hacia adelante como hacia atrás con las teclas de dirección o las teclas \texttt{Page Up}/\texttt{Page Down}, buscar texto con \texttt{/} y salir con \texttt{q}. Es más versátil que \texttt{more} porque no carga el archivo completo en memoria.
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{joni/less1}
+    \caption{Ejecución del comando \texttt{less}: navegación por un archivo de texto}
+    \label{fig:joni_less1}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{joni/less2}
+    \caption{Ejecución del comando \texttt{less}: desplazamiento hacia otra sección del archivo}
+    \label{fig:joni_less2}
+\end{figure}
+
+En las figuras \ref{fig:joni_less1} y \ref{fig:joni_less2} se aprecia cómo \texttt{less} es muy parecido a \texttt{more}, sólo que es más moderno y diferencia de \texttt{more}, no existe un indicador de porcentaje fijo, sino que el nombre del archivo aparece en la barra inferior y el usuario puede desplazarse hacia arriba o hacia abajo en cualquier momento sin restricciones. Aún así, aún falta mejorar el soporte automático para caracteres unicode, ya que sigue mostrando caracteres extraños en lugar de acentos o símbolos especiales.
+
 \subsection{Comando uname}
 El comando \texttt{uname} muestra información sobre el kernel y el sistema operativo en ejecución. Con la opción \texttt{-a} despliega toda la información disponible: nombre del kernel, hostname, versión del kernel, fecha de compilación, arquitectura del hardware y tipo de sistema operativo.
 
@@ -99,7 +131,7 @@ El comando \texttt{uname} muestra información sobre el kernel y el sistema oper
 La salida revela el nombre del sistema operativo, el nombre del equipo en la red, la versión exacta del kernel de Linux junto con su fecha de compilación y la arquitectura del procesador (\texttt{x86\_64}).
 
 \subsection{Comando pstree}
-El comando \texttt{pstree} visualiza los procesos en ejecución en forma de árbol jerárquico, mostrando la relación padre-hijo entre ellos. Esto facilita comprender cómo los procesos se originan unos a partir de otros, partiendo típicamente del proceso \texttt{init} o \texttt{systemd} como raíz.
+El comando \texttt{pstree} visualiza los procesos en ejecución en forma de árbol jerárquico, mostrando la relación padre-hijo entre ellos. Esto facilita comprender cómo los procesos se originan unos a partir de otros, partiendo típicamente del proceso \texttt{init} o \texttt{systemd} como raíz. Con el fin de que no se sature la terminal con todo el árbol, en la figura \ref{fig:joni_pstree} se  utilizó el comando \texttt{head -15} con una unión \texttt{|} para mostrar solo los primeros 15 procesos del árbol.
 
 \begin{figure}[H]
     \centering
@@ -127,7 +159,7 @@ El comando \texttt{man} (manual) muestra las páginas del manual del sistema par
     \label{fig:joni_man2}
 \end{figure}
 
-Las figuras muestran la página de manual consultada, donde se distingue la sección \textit{NAME} con la descripción breve del comando, la sección \textit{SYNOPSIS} con su sintaxis y la sección \textit{DESCRIPTION} con la explicación detallada de cada opción.
+Las figura \ref{fig:joni_man2} muestran la página de manual consultada, donde se distingue la sección \textit{NAME} con la descripción breve del comando, la sección \textit{SYNOPSIS} con su sintaxis y la sección \textit{DESCRIPTION} con la explicación detallada de cada opción.
 
 \subsection{Comando mkdir}
 El comando \texttt{mkdir} (make directory) crea uno o más directorios nuevos en el sistema de archivos. Con la opción \texttt{-p} crea también todos los directorios intermedios necesarios en la ruta indicada si estos no existen.
