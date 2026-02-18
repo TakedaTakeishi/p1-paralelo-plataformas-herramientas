@@ -31,18 +31,103 @@
 
 
 % ==========================================
-% INSTALACIÓN - Delgado Lucero Cristian Isaac
+% INSTALACIÓN PERSONAL DE GNU-LINUX
+% RESPONSABLE: Delgado Lucero Cristian Isaac
 % ==========================================
-\section{Instalación - Delgado Lucero Cristian Isaac}
+\section{Instalación personal de GNU-Linux (Ubuntu 24.04)}
 
-% TODO (Cristian): Coloca aquí tus capturas de pantalla del proceso de instalación
-% Incluye:
-% - Tipo de instalación (máquina virtual o partición física)
-% - Distribución elegida y versión
-% - Capturas de cada paso importante de la instalación
-% - Configuración final
-% - Actualización del sistema
+En esta sección se documenta el proceso de instalación del sistema operativo GNU-Linux, específicamente la distribución Ubuntu 24.04, realizada en un equipo personal.
 
+\subsection*{Paso 1: Selección de la distribución}
+
+Para esta práctica se eligió Ubuntu 24.04, ya que es una distribución ampliamente recomendada para usuarios principiantes y entornos académicos debido a su estabilidad, soporte a largo plazo (LTS) y facilidad de uso.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\textwidth]{imagenes/instalacion/cristian_1_ubuntu_24.png}
+\caption{Selección de Ubuntu 24.04 como sistema operativo a instalar}
+\end{figure}
+
+\subsection*{Paso 2: Creación de USB booteable}
+
+Se procedió a crear una memoria USB booteable utilizando la herramienta Rufus desde Windows. Este proceso permitió preparar la imagen ISO del sistema operativo para que pudiera ejecutarse desde el arranque del equipo.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\textwidth]{imagenes/instalacion/cristian_2_bootear.png}
+\caption{Proceso de creación de USB booteable}
+\end{figure}
+
+\subsection*{Paso 3: Selección de la imagen ISO}
+
+Durante el proceso de configuración en Rufus, se seleccionó la imagen ISO correspondiente a Ubuntu 24.04 previamente descargada desde el sitio oficial.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\textwidth]{imagenes/instalacion/cristian_3_seleccionar_iso.png}
+\caption{Selección de la imagen ISO de Ubuntu}
+\end{figure}
+
+\subsection*{Paso 4: Arranque desde la USB}
+
+Una vez creada la memoria booteable, se configuró el arranque del equipo para iniciar desde la USB. En la siguiente imagen se muestra la detección de la memoria como dispositivo de arranque.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\textwidth]{imagenes/instalacion/cristian_6_usb_booteada.png}
+\caption{Memoria USB detectada como dispositivo de arranque}
+\end{figure}
+
+Es importante mencionar que durante el proceso completo de instalación no se tomaron capturas de pantalla internas del asistente de instalación, ya que el procedimiento se realizó directamente sobre el equipo físico. Sin embargo, se presentan las evidencias posteriores que demuestran que la instalación fue completada correctamente.
+
+\subsection*{Paso 5: Particionado del disco}
+
+Durante la instalación se realizó la partición del disco para permitir la coexistencia con Windows. A continuación se muestra el estado del almacenamiento después de la instalación, donde puede observarse la partición correspondiente a Ubuntu.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\textwidth]{imagenes/instalacion/cristian_5_discos_ubuntu.png}
+\caption{Particiones del disco tras la instalación de Ubuntu}
+\end{figure}
+
+\subsection*{Paso 6: Menú de arranque dual}
+
+Una vez finalizada la instalación, al encender el equipo se muestra el gestor de arranque (GRUB), permitiendo seleccionar entre Ubuntu y el sistema operativo previamente instalado.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\textwidth]{imagenes/instalacion/cristian_7_arranque.jpg}
+\caption{Menú de arranque con opción para Ubuntu}
+\end{figure}
+
+\subsection*{Paso 7: Perfil de usuario en Ubuntu}
+
+Después del primer inicio de sesión, se configuró el perfil de usuario del sistema.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\textwidth]{imagenes/instalacion/cristian_8_perfil.jpg}
+\caption{Perfil de usuario en Ubuntu}
+\end{figure}
+
+\subsection*{Paso 8: Sistema completamente configurado}
+
+Finalmente, se muestra el entorno de escritorio una vez que el sistema quedó completamente configurado y listo para su uso académico.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\textwidth]{imagenes/instalacion/cristian_9_configurado.png}
+\caption{Sistema Ubuntu 24.04 completamente configurado}
+\end{figure}
+
+
+% Ejemplo de cómo insertar una imagen:
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=0.8\textwidth]{instalacion/jonatan_paso1.png}
+%     \caption{Descripción del paso 1}
+%     \label{fig:jonatan_paso1}
+% \end{figure}
 
 % ==========================================
 % INSTALACIÓN - Frem Cortés José Angel
