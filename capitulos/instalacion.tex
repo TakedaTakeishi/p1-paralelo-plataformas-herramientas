@@ -75,7 +75,7 @@ En esta sección se documenta el proceso de instalación del sistema operativo G
 
 Para esta práctica se eligió Ubuntu 24.04, ya que es una distribución ampliamente recomendada para usuarios principiantes y entornos académicos debido a su estabilidad, soporte a largo plazo (LTS) y facilidad de uso.
 
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.8\textwidth]{imagenes/instalacion/cristian_1_ubuntu_24.png}
 \caption{Selección de Ubuntu 24.04 como sistema operativo a instalar}
@@ -85,7 +85,7 @@ Para esta práctica se eligió Ubuntu 24.04, ya que es una distribución ampliam
 
 Se procedió a crear una memoria USB booteable utilizando la herramienta Rufus desde Windows. Este proceso permitió preparar la imagen ISO del sistema operativo para que pudiera ejecutarse desde el arranque del equipo.
 
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.8\textwidth]{imagenes/instalacion/cristian_2_bootear.png}
 \caption{Proceso de creación de USB booteable}
@@ -95,7 +95,7 @@ Se procedió a crear una memoria USB booteable utilizando la herramienta Rufus d
 
 Durante el proceso de configuración en Rufus, se seleccionó la imagen ISO correspondiente a Ubuntu 24.04 previamente descargada desde el sitio oficial.
 
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.8\textwidth]{imagenes/instalacion/cristian_3_seleccionar_iso.png}
 \caption{Selección de la imagen ISO de Ubuntu}
@@ -105,7 +105,7 @@ Durante el proceso de configuración en Rufus, se seleccionó la imagen ISO corr
 
 Una vez creada la memoria booteable, se configuró el arranque del equipo para iniciar desde la USB. En la siguiente imagen se muestra la detección de la memoria como dispositivo de arranque.
 
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.8\textwidth]{imagenes/instalacion/cristian_6_usb_booteada.png}
 \caption{Memoria USB detectada como dispositivo de arranque}
@@ -117,7 +117,7 @@ Es importante mencionar que durante el proceso completo de instalación no se to
 
 Durante la instalación se realizó la partición del disco para permitir la coexistencia con Windows. A continuación se muestra el estado del almacenamiento después de la instalación, donde puede observarse la partición correspondiente a Ubuntu.
 
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.8\textwidth]{imagenes/instalacion/cristian_5_discos_ubuntu.png}
 \caption{Particiones del disco tras la instalación de Ubuntu}
@@ -127,7 +127,7 @@ Durante la instalación se realizó la partición del disco para permitir la coe
 
 Una vez finalizada la instalación, al encender el equipo se muestra el gestor de arranque (GRUB), permitiendo seleccionar entre Ubuntu y el sistema operativo previamente instalado.
 
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.8\textwidth]{imagenes/instalacion/cristian_7_arranque.jpg}
 \caption{Menú de arranque con opción para Ubuntu}
@@ -137,7 +137,7 @@ Una vez finalizada la instalación, al encender el equipo se muestra el gestor d
 
 Después del primer inicio de sesión, se configuró el perfil de usuario del sistema.
 
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.8\textwidth]{imagenes/instalacion/cristian_8_perfil.jpg}
 \caption{Perfil de usuario en Ubuntu}
@@ -147,7 +147,7 @@ Después del primer inicio de sesión, se configuró el perfil de usuario del si
 
 Finalmente, se muestra el entorno de escritorio una vez que el sistema quedó completamente configurado y listo para su uso académico.
 
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.8\textwidth]{imagenes/instalacion/cristian_9_configurado.png}
 \caption{Sistema Ubuntu 24.04 completamente configurado}
@@ -215,3 +215,134 @@ Por último se logró obtener el menú para elegir el sistema operativo con el c
 % - Configuración final
 % - Actualización del sistema
 
+\subsection{¿Que es kali linux?}
+Tal y como lo dice su propio sitio web, Kali Linux es una distribuci\'on de c\'odigo abierto y multiplataforma orientada a diversas tareas de Seguridad de la Informaci\'on, como pruebas de penetraci\'on (pentesting), investigaci\'on de seguridad, inform\'atica forense, ingenier\'ia inversa, gesti\'on de vulnerabilidades y pruebas de \textit{red team} \cite{kalifaq}.
+
+Dado que Kali Linux es multiplataforma, proporciona una base de trabajo s\'olida, estable y conocida, independientemente del entorno donde se utilice, por ejemplo: hardware f\'isico (computadoras de escritorio, laptops, netbooks y servidores), m\'aquinas virtuales (VMware, VirtualBox, Hyper-V y QEMU), entornos \textit{live} (DVDs y memorias USB), nube (AWS, Azure y Linode), contenedores (Docker, Podman y LXC/LXD), WSL (Windows Subsystem for Linux para Windows 10 o superior) y SBC ARM (Raspberry Pi, PineBook, etc.) \cite{kalifaq}.
+
+\subsection{¿Por qu\'e kali linux?}
+Se seleccion\'o la distribuci\'on de kali linux por el hecho de que es una versi\'on de linux muy accesible que utiliza pocos recursos adem\'as de ser muy utilizada en asuntos de ciberseguridad y quiero comenzar a aprender m\'as sobre estos temas.
+
+\subsection{¿Que se necesita para descargar kali linux?}
+Para la correcta instalación de kali linux se necesitan ciertos requerimientos del sistema, así como determinados pasos a realizar con aplicaciones y archivos que se obtienen tanto de la pagina oficial de kali linux como de la pagina oficial de rufus. A continuación se presentan tanto los requisitos mínimos como el "tutorial" que muestra la propia pagina oficial de kali linux.
+
+\subsubsection{Requisitos m\'inimos del sistema para la instalaci\'on de Kali Linux}
+Los requisitos de instalaci\'on de Kali Linux var\'ian seg\'un lo que se desee instalar y la configuraci\'on del equipo, en el nivel m\'as bajo, se puede configurar Kali Linux como un servidor Secure Shell (SSH) b\'asico sin escritorio, usando tan solo 128 MB de RAM (se recomiendan 512 MB) y 2 GB de espacio en disco, en el extremo superior, si se instala el escritorio Xfce4 predeterminado y el metapaquete \texttt{kali-linux-default}, se recomienda contar con al menos 2 GB de RAM y 20 GB de espacio en disco, al utilizar aplicaciones que consumen muchos recursos (por ejemplo, Burp Suite), se recomienda al menos 8 GB de RAM (y m\'as si se trata de una aplicaci\'on web grande) o si se ejecutan varios programas simult\'aneamente \cite{kalihdd}.
+
+\subsubsection{Preparaci\'on para la instalaci\'on}
+
+Descargar Kali Linux (se recomienda la imagen marcada como), grabar la ISO de Kali Linux en un DVD o preparar una unidad USB con Kali Linux Live (si no es posible, consultar la instalaci\'on por red de Kali Linux), realizar una copia de seguridad de toda la informaci\'on importante del dispositivo en un medio externo, asegurarse de que la computadora est\'e configurada para arrancar desde CD/DVD/USB en la BIOS/UEFI, en la configuraci\'on UEFI, asegurarse de que el Arranque seguro (Secure Boot) est\'e deshabilitado, ya que el kernel de Kali Linux no est\'a firmado y no ser\'a reconocido por Secure Boot \cite{kalihdd}.
+
+\subsection{Instalaci\'on de kali linux por parte del alumno Gabriel Alexis Luna Gonzalez}
+
+Primeramente para evitar alg\'un inconveniente realizaremos la realizaci\'on de un punto de guardado en caso de realizar mal un paso y as\'i poder recuperar nuestro sistema operativo en caso de tener alg\'un error. 
+Para ello nos dirigimos al apartado de b\'usqueda de nuestro windows y escribimos "Crear un punto de restauraci\'on" como se muestra a continuaci\'on en la figura \ref{LUNA_punto_restauracion}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\linewidth]{instalacion/LUNA_punto_de_restauracion.png}
+    \caption{B\'usqueda de punto de restauraci\'on Fuente: Elaboraci\'on propia.}
+    \label{LUNA_punto_restauracion}
+\end{figure}
+
+Ya que nos apareci\'o simplemente interactuamos con el elemento y nos deberia de aparecer la interfaz en la cual nosotros le daremos al bot\'on que aparece en la parte inferior de crear, despu\'es de esto va a aparecer otra ventana en la cual debes de colocar el nombre del punto de restauraci\'on y unicamente le das a crear, de la misma forma que se muestra en la figura \ref{LUNA_punto_restauracion2}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\linewidth]{instalacion/LUNA_punto_de_restauracion_2.png}
+    \caption{Establecer punto de restauraci\'on. Fuente: Elaboraci\'on propia.}
+    \label{LUNA_punto_restauracion2}
+\end{figure}
+
+Para esta instalaci\'on se realizara una partici\'on del disco duro, un ssd de 1tb en este caso, lo anterior para poder ejecutar con normalidad tanto el sistema operativo que ya estaba previamente instalado junto con el nuevo sistema operativo que es kali linux.
+Para ello se debe de acceder nuevamente al apartado de b\'usqueda de nuestro windows tal como se ilustra en la figura \ref{LUNA_particion1} en el c\'ual deberemos de escribir lo siguiente "Crear y formatear particiones del disco duro" posteriormente le daremos clic y avanzaremos dentro de la interfaz.    
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\linewidth]{instalacion/LUNA_particion_busqueda.png}
+    \caption{B\'usqueda de la herramienta para la partici\'on del disco. Fuente: Elaboraci\'on propia.}
+    \label{LUNA_particion1}
+\end{figure}
+
+
+Una vez localizada la herramienta y abierta procedemos a trabajar con la misma.
+Primeramente localizamos el disco en el cual deseamos realizar la partici\'on, en mi caso es el OS(C:) la seleccionamos y al darle clic derecho saldr\'a una ventana en la cual deberemos escoger "Reducir volumen". V\'ease figura \ref{LUNA_particion2}. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\linewidth]{instalacion/LUNA_particion_1.png}
+    \caption{Selecci\'on de liberaci\'on de espacio. Fuente: Elaboraci\'on propia.}
+    \label{LUNA_particion2}
+\end{figure}
+
+Ya abierto reducir volumen escogemos en Mb la cantidad deseada para nuestra partici\'on y le damos aceptar como ilustra la figura \ref{LUNA_particion3}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\linewidth]{instalacion/LUNA_particion_2.png}
+    \caption{Escoger Mb de la partici\'on. Fuente: Elaboraci\'on propia}
+    \label{LUNA_particion3}
+\end{figure}
+
+
+Posterior a eso aparecer\'a como nuevo espacio no asignado y al darle clic derecho escogeremos la opci\'on de nuevo volumen simple.
+Despu\'es de eso mantenemos las configuraciones predeterminadas que nos da la interfaz.
+
+
+Se debe instalar la imagen ISO  que se utilizar\'a para la instalación del sistema operativo, para ello se debe de acceder a su sitio web en el cual podremos descargar la imagen ISO de nuestra preferencia, para este caso yo realice la instalación del primer ISO que aparece en la propia pagina, el cual es el que se muestra a continuación en la figura \ref{LUNA_kali_iso}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\linewidth]{instalacion/LUNA_instalacion_ISO_kali.png}
+    \caption[Ventana de descarga del ISO de kali linux]{Ventana de descarga del ISO de kali linux Fuente: \href{https://www.kali.org/get-kali/\#kali-installer-images}{kali.org/get-kali}}
+    \label{LUNA_kali_iso}
+\end{figure}
+
+
+Se debe de preparar una USB con kali linux para su correcta instalación, para este primer paso lo haremos con la ayuda del software Rufus el cual podremos descargar desde su pagina oficial, dentro de la pagina en el apartado de descargas escogeremos el que se adapte a nuestra versión de windows, esto se indica en el apartado de plataforma. V\'ease figura \ref{LUNA_rufus_download}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\linewidth]{instalacion/LUNA_kali_linux_descarga_rufus.png}
+    \caption[Ventana de descarga del software Rufus]{Ventana de descarga del software Rufus. Fuente: \href{https://rufus.ie/es/\#download}{rufus.ie}}
+    \label{LUNA_rufus_download}
+\end{figure}
+
+Posterior a haber descargado el software de rufus, realizamos la ejecución del ejecutable descargado, teniendo ya previamente introducida la usb en nuestro dispositivo, al abrir el ejecutable se nos abrir\'a la interfaz principal del programa, en esta deber\'as escoger la USB que utilizaras para la instalaci\'on de kali linux junto con el ISO previamente instalado. Como se muestra a continuaci\'on. Para finalmente darle en empezar. Como ilustra la figura \ref{LUNA_Rufus_kali1}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\linewidth]{instalacion/LUNA_RUFUS_instalar_kali.png}
+    \caption{Configuraci\'on de RUFUS para instalar kali linux. Fuente: Elaboraci\'on propia.}
+    \label{LUNA_Rufus_kali1}
+\end{figure}
+\newpage
+Una vez que se tenga listo todo lo anterior podemos comenzar a trabajar lo que vendr\'ia a ser nuestra instalaci\'on de kali linux.
+
+Se debe de apagar el dispositivo y al momento de encender la maquina oprimir las teclas determinadas por tu sistema para acceder a la bios.
+En el caso de mi laptop tuve que desactivar el secure boot para que funcione el instalador.
+Una vez dentro se selecciona la unidad en la cual se va a descargar kali linux. En la siguiente opción deber\'an escoger Graphical install. Tal y como ilustra la figura \ref{LUNA_kali1}
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\linewidth]{instalacion/LUNA_kali_linux_1.png}
+    \caption{Primera vista de la interfaz de instalaci\'on de kali linux. Fuente: Elaboraci\'on propia.}
+    \label{LUNA_kali1}
+\end{figure}
+Despu\'es seleccionar el idioma español, fijar el territorio a M\'exico, escoger el teclado de preferencia, escoges la interfaz de red adem\'as de configurar tu red, posterior a eso se tienen que escoger las contraseñas, nuevamente escoger zona horaria. Lo anterior se observa en la figura \ref{LUNA_kali2}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\linewidth]{instalacion/LUNA_kali_linux_idioma.png}
+    \caption{Configuraci\'on de idioma. Fuente: Elaboraci\'on propia.}
+    \label{LUNA_kali2}
+\end{figure}
+
+En particionado de discos escoger manual y escoger tu disco, en utilizar como le asignamos sistema de ficheros ext4 transaccional, adem\'as en punto de montaje debe estar / sin comillas. Esta configuraci\'on se observa en el numero 4 de 289.1 GB (que es mi disco particionado con el espacio que le asigne para kali linux) como se aprecia en la figura \ref{LUNA_kali_3}.
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\linewidth]{instalacion/LUNA_kali_linux_final.png}
+    \caption{Visualizaci\'on de como se debe ver la configuraci\'on de tu disco. Fuente:Elaboraci\'on propia.}
+    \label{LUNA_kali_3}
+\end{figure}
+Una vez realizado lo anterior le daremos clic a Finalizar el particionado y escribir los cambios en el disco. Una vez escogido lo anterior te pedira aceptar que se elimine la información de tu partici\'on a lo cual dir\'as que si y podra realizarse la instalaci\'on de kali Linux.
+Despu\'es aparecer\'a la selecci\'on de programas donde podras escoger que descargar. Al finalizar esta parte te aparece la ventana de que el proceso ha terminado y podr\'as tener tu kali linux con normalidad. 
