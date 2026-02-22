@@ -95,6 +95,11 @@
 % --- Formato de títulos (para aplicar tamaños personalizados) ---
 \usepackage{titlesec}
 
+% --- Espacio entre párrafos ---
+% TIP: No uses \parskip=0.5em si tu escuela requiere sangría.
+\setlength{\parskip}{\baselineskip}
+\setlength{\parindent}{0pt}
+
 % Aplicar tamaños de títulos desde proyecto.tex
 \titleformat{\chapter}[display]
   {\normalfont\bfseries}{\chaptertitlename\ \thechapter}{20pt}{\fontsize{\tamanoTituloUno}{\dimexpr\tamanoTituloUno*12/10\relax}\selectfont}
@@ -181,3 +186,7 @@
 % Nota al margen
 % Uso: \nota{Recordar revisar esto}
 \newcommand{\nota}[1]{\marginpar{\footnotesize\textit{#1}}}
+
+% Para citar como elaboración propia
+% Uso: \propia{} → Fuente: elaboración propia.
+\newcommand{\propia}{Fuente: elaboración propia.}
